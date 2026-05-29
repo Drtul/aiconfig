@@ -7,97 +7,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #0e0e12;
-  --paper: #f5f3ee;
-  --cream: #ede9e0;
-  --accent: #c8773a;
-  --accent2: #3a7fc8;
-  --accent3: #5a9c6f;
-  --muted: #8a8580;
-  --gold: #c9a84c;
-  --border: rgba(14,14,18,0.12);
-  --shadow: 0 4px 32px rgba(14,14,18,0.10);
+  --ink:#0e0e12;--paper:#f5f3ee;--cream:#ede9e0;
+  --accent:#c8773a;--accent2:#3a7fc8;--accent3:#5a9c6f;
+  --muted:#8a8580;--gold:#c9a84c;--border:rgba(14,14,18,0.12);
+  --shadow:0 4px 32px rgba(14,14,18,0.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:'Outfit',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  min-height:100vh;
-  overflow-x:hidden;
-}
+body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.6;}
 
-/* ── GRAIN OVERLAY ── */
-body::before{
-  content:'';
-  position:fixed;top:0;left:0;right:0;bottom:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:1000;opacity:0.6;
-}
-
-/* ── HEADER ── */
-header{
-  background:var(--ink);
-  color:white;
-  padding:3rem 2rem 2.5rem;
-  position:relative;
-  overflow:hidden;
-}
-header::before{
-  content:'';
-  position:absolute;top:-80px;right:-80px;
-  width:320px;height:320px;
-  background:radial-gradient(circle,rgba(200,119,58,0.25) 0%,transparent 70%);
-  border-radius:50%;
-}
-header::after{
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold) 40%,transparent);
-}
+/* HEADER */
+header{background:var(--ink);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(200,119,58,.25) 0%,transparent 70%);border-radius:50%;}
+header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 40%,transparent);}
 .header-inner{max-width:1100px;margin:0 auto;}
-.header-kicker{
-  font-size:10px;letter-spacing:.25em;text-transform:uppercase;
-  color:rgba(201,168,76,0.8);font-weight:600;margin-bottom:.6rem;
-  display:flex;align-items:center;gap:10px;
-}
+.header-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,168,76,.8);font-weight:600;margin-bottom:.6rem;display:flex;align-items:center;gap:10px;}
 .header-kicker::before{content:'';width:28px;height:1px;background:var(--gold);display:inline-block;}
-header h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,4vw,3.2rem);
-  font-weight:700;line-height:1.15;
-  margin-bottom:.5rem;
-}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:.5rem;}
 header h1 em{color:var(--accent);font-style:italic;}
-header p{color:rgba(255,255,255,0.5);font-size:13px;font-weight:300;max-width:520px;line-height:1.7;}
+header p{color:rgba(255,255,255,.5);font-size:13px;font-weight:300;max-width:520px;line-height:1.7;}
 
-/* ── PROGRESS BAR ── */
-.progress-wrapper{
-  max-width:1100px;margin:0 auto;
-  padding:1.4rem 2rem;
-  background:var(--cream);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
-}
+/* PROGRESS */
+.progress-wrapper{max-width:1100px;margin:0 auto;padding:1.4rem 2rem;background:var(--cream);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
 .progress-steps{display:flex;gap:0;flex:1;}
-.step-node{
-  flex:1;display:flex;flex-direction:column;align-items:center;
-  position:relative;cursor:pointer;
-}
-.step-node:not(:last-child)::after{
-  content:'';position:absolute;top:14px;left:50%;right:-50%;height:2px;
-  background:var(--border);z-index:0;
-}
+.step-node{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:pointer;}
+.step-node:not(:last-child)::after{content:'';position:absolute;top:14px;left:50%;right:-50%;height:2px;background:var(--border);z-index:0;}
 .step-node.done:not(:last-child)::after{background:var(--accent);}
-.step-circle{
-  width:28px;height:28px;border-radius:50%;
-  background:white;border:2px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;font-weight:700;color:var(--muted);
-  position:relative;z-index:1;transition:all .3s;
-}
+.step-circle{width:28px;height:28px;border-radius:50%;background:white;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);position:relative;z-index:1;transition:all .3s;}
 .step-node.active .step-circle{background:var(--accent);border-color:var(--accent);color:white;box-shadow:0 0 0 4px rgba(200,119,58,.2);}
 .step-node.done .step-circle{background:var(--ink);border-color:var(--ink);color:white;}
 .step-node.done .step-circle::after{content:'✓';}
@@ -107,298 +44,183 @@ header p{color:rgba(255,255,255,0.5);font-size:13px;font-weight:300;max-width:52
 .step-node.done .step-label{color:var(--ink);}
 .progress-pct{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--accent);white-space:nowrap;}
 
-/* ── MAIN LAYOUT ── */
-.app-shell{
-  max-width:1100px;margin:0 auto;
-  padding:2rem;
-  display:grid;
-  grid-template-columns:1fr 380px;
-  gap:2rem;
-  align-items:start;
-}
+/* LAYOUT */
+.app-shell{max-width:1100px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:1fr 380px;gap:2rem;align-items:start;}
 @media(max-width:900px){.app-shell{grid-template-columns:1fr;}}
 
-/* ── SECTIONS ── */
-.section{
-  background:white;border-radius:20px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  padding:2rem;
-  margin-bottom:1.5rem;
-  display:none;
-  animation:reveal .35s ease both;
-}
+/* SECTIONS */
+.section{background:white;border-radius:20px;border:1px solid var(--border);box-shadow:var(--shadow);padding:2rem;margin-bottom:1.5rem;display:none;animation:reveal .35s ease both;}
 .section.active{display:block;}
 @keyframes reveal{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
-.section-header{
-  display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.8rem;
-  padding-bottom:1.2rem;border-bottom:1px solid var(--border);
-}
-.section-num{
-  width:40px;height:40px;border-radius:12px;
-  background:var(--ink);color:white;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:16px;font-weight:700;font-style:italic;
-  flex-shrink:0;
-}
+.section-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.8rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);}
+.section-num{width:40px;height:40px;border-radius:12px;background:var(--ink);color:white;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;font-style:italic;flex-shrink:0;}
 .section-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:.2rem;}
 .section-desc{font-size:12px;color:var(--muted);line-height:1.6;}
 
-/* ── FORM ELEMENTS ── */
+/* FORM */
 .field-group{margin-bottom:1.4rem;}
-.field-label{
-  display:block;font-size:10px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;
-}
+.field-label{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
 .field-label span{color:var(--accent);margin-left:2px;}
-input[type=text],select,textarea{
-  width:100%;padding:12px 15px;
-  border:1.5px solid var(--border);border-radius:12px;
-  font-family:'Outfit',sans-serif;font-size:13px;
-  background:var(--paper);color:var(--ink);
-  transition:border-color .2s,box-shadow .2s;
-  appearance:none;-webkit-appearance:none;
-}
-input[type=text]:focus,select:focus,textarea:focus{
-  outline:none;border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(200,119,58,.12);
-  background:white;
-}
+input[type=text],select,textarea{width:100%;padding:12px 15px;border:1.5px solid var(--border);border-radius:12px;font-family:'Outfit',sans-serif;font-size:13px;background:var(--paper);color:var(--ink);transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none;}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,119,58,.12);background:white;}
 textarea{resize:vertical;min-height:90px;line-height:1.7;}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8580' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;}
 
-/* ── CHIP SELECTOR ── */
+/* CHIPS */
 .chip-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
-.chip{
-  padding:7px 14px;border-radius:100px;border:1.5px solid var(--border);
-  font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;
-  background:white;color:var(--muted);user-select:none;
-}
+.chip{padding:7px 14px;border-radius:100px;border:1.5px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;background:white;color:var(--muted);user-select:none;}
 .chip:hover{border-color:var(--accent);color:var(--accent);}
 .chip.selected{background:var(--accent);border-color:var(--accent);color:white;}
-.chip.selected-blue{background:var(--accent2);border-color:var(--accent2);color:white;}
-.chip.selected-green{background:var(--accent3);border-color:var(--accent3);color:white;}
 
-/* ── TONE SLIDERS ── */
+/* SLIDERS */
 .slider-row{margin-bottom:1.1rem;}
 .slider-labels{display:flex;justify-content:space-between;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
-input[type=range]{
-  -webkit-appearance:none;width:100%;height:4px;
-  background:linear-gradient(to right,var(--accent) var(--pct,50%),var(--border) var(--pct,50%));
-  border-radius:4px;outline:none;cursor:pointer;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
-  background:white;border:2.5px solid var(--accent);box-shadow:0 2px 8px rgba(200,119,58,.3);
-  transition:transform .15s;
-}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:linear-gradient(to right,var(--accent) var(--pct,50%),var(--border) var(--pct,50%));border-radius:4px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:white;border:2.5px solid var(--accent);box-shadow:0 2px 8px rgba(200,119,58,.3);transition:transform .15s;}
 input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
 
-/* ── PRIORITY SORT ── */
+/* PRIORITY */
 .priority-list{list-style:none;}
-.priority-item{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);
-  background:var(--paper);margin-bottom:8px;cursor:grab;
-  transition:all .2s;font-size:13px;font-weight:500;
-}
+.priority-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);background:var(--paper);margin-bottom:8px;cursor:grab;transition:all .2s;font-size:13px;font-weight:500;}
 .priority-item:active{cursor:grabbing;}
 .priority-item.drag-over{border-color:var(--accent);background:rgba(200,119,58,.05);}
 .drag-handle{color:var(--muted);font-size:18px;line-height:1;}
-.priority-rank{
-  width:22px;height:22px;border-radius:50%;
-  background:var(--ink);color:white;
-  font-size:10px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
+.priority-rank{width:22px;height:22px;border-radius:50%;background:var(--ink);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-/* ── NAV BUTTONS ── */
+/* NAV */
 .section-nav{display:flex;gap:10px;margin-top:2rem;}
-.btn{
-  padding:12px 24px;border-radius:12px;border:none;
-  font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;
-  cursor:pointer;transition:all .2s;letter-spacing:.02em;
-}
+.btn{padding:12px 24px;border-radius:12px;border:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.02em;}
 .btn-prev{background:var(--paper);border:1.5px solid var(--border);color:var(--muted);}
 .btn-prev:hover{border-color:var(--ink);color:var(--ink);}
-.btn-next{
-  background:var(--ink);color:white;flex:1;
-  font-family:'Playfair Display',serif;font-style:italic;font-size:15px;
-}
+.btn-next{background:var(--ink);color:white;flex:1;font-family:'Playfair Display',serif;font-style:italic;font-size:15px;}
 .btn-next:hover{background:#1a1a22;transform:translateY(-1px);box-shadow:0 6px 20px rgba(14,14,18,.25);}
-.btn-generate{
-  background:linear-gradient(135deg,var(--accent),#b8622a);
-  color:white;width:100%;
-  font-family:'Playfair Display',serif;font-style:italic;font-size:17px;
-  padding:16px;border-radius:14px;
-  box-shadow:0 4px 16px rgba(200,119,58,.3);
-}
+.btn-generate{background:linear-gradient(135deg,var(--accent),#b8622a);color:white;width:100%;font-family:'Playfair Display',serif;font-style:italic;font-size:17px;padding:16px;border-radius:14px;box-shadow:0 4px 16px rgba(200,119,58,.3);}
 .btn-generate:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,119,58,.4);}
 
-/* ── RIGHT PANEL ── */
+/* RIGHT PANEL */
 .right-panel{position:sticky;top:1.5rem;}
-.preview-card{
-  background:var(--ink);color:white;
-  border-radius:20px;overflow:hidden;
-  box-shadow:0 8px 40px rgba(14,14,18,.25);
-}
-.preview-header{
-  padding:1.4rem 1.6rem;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.preview-header-title{
-  font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,.9);
-}
-.preview-live-badge{
-  display:flex;align-items:center;gap:6px;
-  font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(201,168,76,.8);
-}
+.preview-card{background:var(--ink);color:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(14,14,18,.25);}
+.preview-header{padding:1.4rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;}
+.preview-header-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,.9);}
+.preview-live-badge{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,168,76,.8);}
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pls 2s ease-in-out infinite;}
 @keyframes pls{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
 .preview-body{padding:1.6rem;min-height:300px;font-size:12px;line-height:1.8;color:rgba(255,255,255,.65);}
-.preview-placeholder{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  min-height:240px;color:rgba(255,255,255,.2);text-align:center;gap:12px;
-}
-.preview-placeholder svg{opacity:.3;}
+.preview-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px;color:rgba(255,255,255,.2);text-align:center;gap:12px;}
 .preview-placeholder p{font-size:11px;font-style:italic;}
-.preview-section-label{
-  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(201,168,76,.7);margin-bottom:8px;margin-top:1rem;
-  display:flex;align-items:center;gap:8px;
-}
+.preview-section-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:8px;margin-top:1rem;display:flex;align-items:center;gap:8px;}
 .preview-section-label::before{content:'';width:16px;height:1px;background:var(--gold);display:inline-block;}
-.preview-tag{
-  display:inline-block;padding:3px 9px;border-radius:6px;
-  border:1px solid rgba(255,255,255,.1);font-size:10px;font-weight:600;
-  color:rgba(255,255,255,.7);margin:2px;background:rgba(255,255,255,.05);
-}
+.preview-tag{display:inline-block;padding:3px 9px;border-radius:6px;border:1px solid rgba(255,255,255,.1);font-size:10px;font-weight:600;color:rgba(255,255,255,.7);margin:2px;background:rgba(255,255,255,.05);}
 .preview-text{font-size:11.5px;line-height:1.8;color:rgba(255,255,255,.65);}
 .preview-strong{color:white;font-weight:600;}
 
-/* ── OUTPUT MODAL ── */
-.modal-overlay{
-  position:fixed;inset:0;background:rgba(14,14,18,.7);backdrop-filter:blur(8px);
-  z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;
-  opacity:0;pointer-events:none;transition:opacity .3s;
-}
+/* OUTPUT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(14,14,18,.7);backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s;}
 .modal-overlay.open{opacity:1;pointer-events:all;}
-.modal{
-  background:white;border-radius:24px;width:100%;max-width:720px;
-  max-height:90vh;overflow:hidden;display:flex;flex-direction:column;
-  box-shadow:0 24px 80px rgba(14,14,18,.4);
-  transform:scale(.96) translateY(16px);transition:transform .3s;
-}
+.modal{background:white;border-radius:24px;width:100%;max-width:820px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(14,14,18,.4);transform:scale(.96) translateY(16px);transition:transform .3s;}
 .modal-overlay.open .modal{transform:scale(1) translateY(0);}
-.modal-header{
-  padding:1.6rem 2rem;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  background:var(--ink);color:white;border-radius:24px 24px 0 0;
-}
+.modal-header{padding:1.4rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:white;border-radius:24px 24px 0 0;flex-shrink:0;}
 .modal-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;}
-.modal-close{
-  width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.08);color:white;cursor:pointer;font-size:18px;
-  display:flex;align-items:center;justify-content:center;transition:background .2s;
-}
+.modal-close{width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s;}
 .modal-close:hover{background:rgba(255,255,255,.15);}
-.modal-body{padding:2rem;overflow-y:auto;flex:1;}
-.output-box{
-  font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.9;
-  background:var(--paper);border:1.5px solid var(--border);border-radius:14px;
-  padding:1.6rem;color:var(--ink);white-space:pre-wrap;margin-bottom:1.2rem;
-  max-height:55vh;overflow-y:auto;
-}
+
+/* MODAL TABS */
+.modal-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--cream);flex-shrink:0;overflow-x:auto;}
+.modal-tab{padding:12px 20px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:8px;}
+.modal-tab:hover{color:var(--ink);}
+.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:white;}
+.modal-tab-icon{font-size:16px;}
+
+.modal-body{padding:0;overflow-y:auto;flex:1;}
+.tab-panel{display:none;padding:1.8rem 2rem;}
+.tab-panel.active{display:block;}
+
+/* PROMPT OUTPUT */
+.output-box{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.9;background:var(--paper);border:1.5px solid var(--border);border-radius:14px;padding:1.6rem;color:var(--ink);white-space:pre-wrap;margin-bottom:1.2rem;max-height:48vh;overflow-y:auto;}
 .modal-actions{display:flex;gap:10px;}
-.btn-copy{
-  flex:1;padding:12px;border-radius:12px;border:1.5px solid var(--ink);
-  background:var(--ink);color:white;font-family:'Outfit',sans-serif;
-  font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
+.btn-copy{flex:1;padding:12px;border-radius:12px;border:1.5px solid var(--ink);background:var(--ink);color:white;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn-copy:hover{background:#1a1a22;}
 .btn-copy.success{background:#3a7fc8;border-color:#3a7fc8;}
-.btn-dl{
-  padding:12px 20px;border-radius:12px;border:1.5px solid var(--border);
-  background:white;color:var(--ink);font-family:'Outfit',sans-serif;
-  font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;gap:8px;
-}
+.btn-dl{padding:12px 20px;border-radius:12px;border:1.5px solid var(--border);background:white;color:var(--ink);font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;}
 .btn-dl:hover{border-color:var(--ink);}
 
-/* ── LIVE TEST ── */
-.test-container{
-  background:var(--ink);color:white;border-radius:20px;
-  margin-top:1.5rem;overflow:hidden;
-}
-.test-header{
-  padding:1.2rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:space-between;
-}
+/* PLATFORM GUIDE */
+.platform-card{border-radius:16px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:1.2rem;}
+.platform-header{padding:1rem 1.4rem;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;transition:background .2s;}
+.platform-header:hover{background:var(--paper);}
+.platform-logo{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.platform-name{font-weight:700;font-size:14px;flex:1;}
+.platform-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;}
+.badge-free{background:rgba(90,156,111,.15);color:#3a8a5f;border:1px solid rgba(90,156,111,.3);}
+.badge-paid{background:rgba(200,119,58,.12);color:#b8622a;border:1px solid rgba(200,119,58,.3);}
+.badge-both{background:rgba(58,127,200,.12);color:#2a6ab8;border:1px solid rgba(58,127,200,.3);}
+.platform-chevron{color:var(--muted);font-size:12px;transition:transform .2s;}
+.platform-card.open .platform-chevron{transform:rotate(180deg);}
+.platform-body{display:none;padding:0 1.4rem 1.4rem;border-top:1px solid var(--border);}
+.platform-card.open .platform-body{display:block;}
+
+.step-list{list-style:none;margin-top:1rem;}
+.step-item{display:flex;gap:12px;margin-bottom:1rem;align-items:flex-start;}
+.step-bullet{width:24px;height:24px;border-radius:50%;background:var(--ink);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step-content{flex:1;}
+.step-title{font-weight:700;font-size:13px;margin-bottom:3px;}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.7;}
+.step-desc code{background:var(--paper);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);}
+.step-desc a{color:var(--accent2);text-decoration:none;}
+.step-desc a:hover{text-decoration:underline;}
+
+.tip-box{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:.9rem 1.1rem;margin-top:.8rem;font-size:12px;line-height:1.7;color:#7a6020;}
+.tip-box strong{color:#5a4010;}
+.warn-box{background:rgba(200,119,58,.08);border:1px solid rgba(200,119,58,.25);border-radius:10px;padding:.9rem 1.1rem;margin-top:.8rem;font-size:12px;line-height:1.7;color:#7a3a10;}
+
+.path-visual{background:var(--paper);border-radius:10px;padding:.9rem 1.2rem;margin:.6rem 0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);line-height:1.8;border:1px solid var(--border);}
+.path-visual .arrow{color:var(--accent);font-style:normal;}
+
+.platform-copy-btn{display:inline-flex;align-items:center;gap:6px;margin-top:.8rem;padding:8px 16px;border-radius:8px;border:1.5px solid var(--ink);background:var(--ink);color:white;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;}
+.platform-copy-btn:hover{background:#1a1a22;}
+.platform-copy-btn.success{background:var(--accent3);border-color:var(--accent3);}
+
+/* COMPARISON TABLE */
+.compare-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:1rem;}
+.compare-table th{background:var(--ink);color:white;padding:10px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.08em;}
+.compare-table th:first-child{border-radius:10px 0 0 0;}
+.compare-table th:last-child{border-radius:0 10px 0 0;}
+.compare-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table tr:nth-child(even) td{background:var(--paper);}
+.check{color:#3a8a5f;font-weight:700;}
+.cross{color:#c8404a;font-weight:700;}
+.partial{color:#b8622a;font-weight:700;}
+
+/* LIVE TEST */
+.test-container{background:var(--ink);color:white;border-radius:20px;margin-top:1.5rem;overflow:hidden;}
+.test-header{padding:1.2rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;}
 .test-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;}
 .test-badge{font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;background:rgba(90,156,111,.2);color:#7dcf97;border:1px solid rgba(90,156,111,.3);}
 .chat-area{padding:1.4rem;min-height:200px;max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;}
-.chat-msg{
-  max-width:88%;padding:10px 14px;border-radius:14px;font-size:12px;line-height:1.7;
-}
-.chat-msg.user{
-  align-self:flex-end;background:var(--accent);color:white;
-  border-radius:14px 14px 4px 14px;
-}
-.chat-msg.ai{
-  align-self:flex-start;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);
-  border-radius:14px 14px 14px 4px;border:1px solid rgba(255,255,255,.08);
-}
+.chat-msg{max-width:88%;padding:10px 14px;border-radius:14px;font-size:12px;line-height:1.7;}
+.chat-msg.user{align-self:flex-end;background:var(--accent);color:white;border-radius:14px 14px 4px 14px;}
+.chat-msg.ai{align-self:flex-start;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border-radius:14px 14px 14px 4px;border:1px solid rgba(255,255,255,.08);}
 .chat-msg.ai.typing::after{content:'●●●';animation:typing 1.2s infinite;letter-spacing:3px;font-size:10px;}
 @keyframes typing{0%,100%{opacity:.3;}50%{opacity:1;}}
-.test-input-row{
-  padding:1rem 1.4rem;border-top:1px solid rgba(255,255,255,.08);
-  display:flex;gap:8px;
-}
-.test-input{
-  flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;padding:10px 14px;color:white;font-family:'Outfit',sans-serif;
-  font-size:12px;outline:none;transition:border-color .2s;
-}
+.test-input-row{padding:1rem 1.4rem;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;}
+.test-input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;color:white;font-family:'Outfit',sans-serif;font-size:12px;outline:none;transition:border-color .2s;}
 .test-input::placeholder{color:rgba(255,255,255,.3);}
 .test-input:focus{border-color:rgba(200,119,58,.5);}
-.test-send{
-  padding:10px 16px;background:var(--accent);border:none;border-radius:10px;
-  color:white;font-weight:700;cursor:pointer;font-size:12px;transition:all .2s;
-  white-space:nowrap;
-}
+.test-send{padding:10px 16px;background:var(--accent);border:none;border-radius:10px;color:white;font-weight:700;cursor:pointer;font-size:12px;transition:all .2s;white-space:nowrap;}
 .test-send:hover{background:#b8622a;}
 .test-send:disabled{opacity:.4;cursor:not-allowed;}
 
-/* ── TOAST ── */
-#toast{
-  position:fixed;bottom:24px;right:24px;z-index:9999;
-  background:var(--ink);color:white;
-  padding:12px 20px;border-radius:12px;
-  font-size:12px;font-weight:600;
-  border:1px solid rgba(201,168,76,.3);
-  transform:translateY(60px);opacity:0;
-  transition:all .3s cubic-bezier(.34,1.56,.64,1);
-  pointer-events:none;display:flex;align-items:center;gap:8px;
-}
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--ink);color:white;padding:12px 20px;border-radius:12px;font-size:12px;font-weight:600;border:1px solid rgba(201,168,76,.3);transform:translateY(60px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;display:flex;align-items:center;gap:8px;}
 #toast.show{transform:translateY(0);opacity:1;}
 
-/* ── RESPONSIVE ── */
-@media(max-width:640px){
-  header{padding:2rem 1.2rem;}
-  .app-shell{padding:1rem;}
-  .section{padding:1.4rem;}
-}
+@media(max-width:640px){header{padding:2rem 1.2rem;}.app-shell{padding:1rem;}.section{padding:1.4rem;}.modal-tabs{overflow-x:auto;}.modal-tab{padding:10px 14px;}}
 </style>
 </head>
 <body>
-
 <div id="toast">✓ <span id="toastText">คัดลอกแล้ว</span></div>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <div class="header-kicker">AI Configuration System</div>
@@ -407,8 +229,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
   </div>
 </header>
 
-<!-- PROGRESS -->
-<div class="progress-wrapper" style="position:sticky;top:0;z-index:100;">
+<div class="progress-wrapper">
   <div class="progress-steps" id="progressSteps">
     <div class="step-node active" onclick="goToStep(1)"><div class="step-circle"><span>1</span></div><div class="step-label">ตัวตน</div></div>
     <div class="step-node" onclick="goToStep(2)"><div class="step-circle"><span>2</span></div><div class="step-label">อาชีพ</div></div>
@@ -421,272 +242,65 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
   <div class="progress-pct" id="progressPct">0%</div>
 </div>
 
-<!-- MAIN -->
 <div class="app-shell">
 <div class="left-col">
 
-<!-- SECTION 1: Identity -->
+<!-- S1 -->
 <div class="section active" id="sec1">
-  <div class="section-header">
-    <div class="section-num">1</div>
-    <div><div class="section-title">ข้อมูลตัวตนของคุณ</div><div class="section-desc">AI จะใช้ข้อมูลนี้เพื่อเรียนรู้บริบทของคุณและตอบสนองได้ตรงจุดยิ่งขึ้น</div></div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ชื่อที่ต้องการให้ AI เรียก <span>*</span></label>
-    <input type="text" id="f_name" placeholder="เช่น คุณสมชาย / Khun Somsak" oninput="updatePreview()">
-  </div>
-  <div class="field-group">
-    <label class="field-label">ภาษาหลักที่ต้องการสื่อสาร <span>*</span></label>
-    <div class="chip-group" id="langGroup">
-      <div class="chip" onclick="toggleChip(this,'langGroup')">🇹🇭 ภาษาไทย</div>
-      <div class="chip" onclick="toggleChip(this,'langGroup')">🇬🇧 English</div>
-      <div class="chip" onclick="toggleChip(this,'langGroup')">🇰🇭 ភាសាខ្មែរ</div>
-      <div class="chip" onclick="toggleChip(this,'langGroup')">🇯🇵 日本語</div>
-      <div class="chip" onclick="toggleChip(this,'langGroup')">🇨🇳 中文</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ระดับประสบการณ์การใช้ AI</label>
-    <select id="f_aiexp" onchange="updatePreview()">
-      <option value="">-- เลือก --</option>
-      <option value="beginner">มือใหม่ — เพิ่งเริ่มใช้ ต้องการคำอธิบายละเอียด</option>
-      <option value="intermediate">กลาง — ใช้งานได้บ้าง อยากเพิ่มประสิทธิภาพ</option>
-      <option value="advanced">ก้าวหน้า — คุ้นเคยดี ต้องการ Prompt ซับซ้อน</option>
-      <option value="expert">ผู้เชี่ยวชาญ — พัฒนา AI Workflows / Agentic Systems</option>
-    </select>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ช่วงเวลาที่ใช้ AI มากที่สุด</label>
-    <div class="chip-group" id="timeGroup">
-      <div class="chip" onclick="toggleChip(this,'timeGroup')">🌅 เช้า</div>
-      <div class="chip" onclick="toggleChip(this,'timeGroup')">☀️ กลางวัน</div>
-      <div class="chip" onclick="toggleChip(this,'timeGroup')">🌆 เย็น</div>
-      <div class="chip" onclick="toggleChip(this,'timeGroup')">🌙 กลางคืน</div>
-      <div class="chip" onclick="toggleChip(this,'timeGroup')">🔀 ไม่แน่นอน</div>
-    </div>
-  </div>
+  <div class="section-header"><div class="section-num">1</div><div><div class="section-title">ข้อมูลตัวตนของคุณ</div><div class="section-desc">AI จะใช้ข้อมูลนี้เพื่อเรียนรู้บริบทของคุณและตอบสนองได้ตรงจุดยิ่งขึ้น</div></div></div>
+  <div class="field-group"><label class="field-label">ชื่อที่ต้องการให้ AI เรียก <span>*</span></label><input type="text" id="f_name" placeholder="เช่น คุณสมชาย / Khun Somsak" oninput="updatePreview()"></div>
+  <div class="field-group"><label class="field-label">ภาษาหลักที่ต้องการสื่อสาร <span>*</span></label><div class="chip-group" id="langGroup"><div class="chip" onclick="toggleChip(this)">🇹🇭 ภาษาไทย</div><div class="chip" onclick="toggleChip(this)">🇬🇧 English</div><div class="chip" onclick="toggleChip(this)">🇰🇭 ភាសាខ្មែរ</div><div class="chip" onclick="toggleChip(this)">🇯🇵 日本語</div><div class="chip" onclick="toggleChip(this)">🇨🇳 中文</div></div></div>
+  <div class="field-group"><label class="field-label">ระดับประสบการณ์การใช้ AI</label><select id="f_aiexp" onchange="updatePreview()"><option value="">-- เลือก --</option><option value="beginner">มือใหม่ — เพิ่งเริ่มใช้ ต้องการคำอธิบายละเอียด</option><option value="intermediate">กลาง — ใช้งานได้บ้าง อยากเพิ่มประสิทธิภาพ</option><option value="advanced">ก้าวหน้า — คุ้นเคยดี ต้องการ Prompt ซับซ้อน</option><option value="expert">ผู้เชี่ยวชาญ — พัฒนา AI Workflows / Agentic Systems</option></select></div>
+  <div class="field-group"><label class="field-label">ช่วงเวลาที่ใช้ AI มากที่สุด</label><div class="chip-group" id="timeGroup"><div class="chip" onclick="toggleChip(this)">🌅 เช้า</div><div class="chip" onclick="toggleChip(this)">☀️ กลางวัน</div><div class="chip" onclick="toggleChip(this)">🌆 เย็น</div><div class="chip" onclick="toggleChip(this)">🌙 กลางคืน</div><div class="chip" onclick="toggleChip(this)">🔀 ไม่แน่นอน</div></div></div>
   <div class="section-nav"><button class="btn btn-next" onclick="nextStep()">ถัดไป — อาชีพ & บทบาท →</button></div>
 </div>
 
-<!-- SECTION 2: Career -->
+<!-- S2 -->
 <div class="section" id="sec2">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <div><div class="section-title">อาชีพ & บทบาทของคุณ</div><div class="section-desc">AI จะปรับโทนและภาษาให้เหมาะสมกับสาขาอาชีพ</div></div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">สาขาอาชีพหลัก <span>*</span></label>
-    <select id="f_sector" onchange="loadRoles(); updatePreview()">
-      <option value="">-- เลือกสาขา --</option>
-      <option value="business">💼 ธุรกิจ & บริหาร</option>
-      <option value="medical">🏥 การแพทย์ & สุขภาพ</option>
-      <option value="finance">📈 การเงิน & การลงทุน</option>
-      <option value="education">🎓 การศึกษา & วิชาการ</option>
-      <option value="tech">💻 เทคโนโลยี & โปรแกรม</option>
-      <option value="creative">🎨 ครีเอทีฟ & การตลาด</option>
-      <option value="legal">⚖️ กฎหมาย & การปกครอง</option>
-      <option value="agriculture">🌾 เกษตรกรรม & อาหาร</option>
-      <option value="realestate">🏢 อสังหาริมทรัพย์</option>
-      <option value="hospitality">🏨 การท่องเที่ยว & บริการ</option>
-      <option value="freelance">🔗 อิสระ / หลายด้าน</option>
-    </select>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ตำแหน่ง / บทบาทเฉพาะ</label>
-    <select id="f_role" onchange="updatePreview()">
-      <option value="">-- เลือกสาขาก่อน --</option>
-    </select>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ระดับอาวุโส</label>
-    <div class="chip-group" id="senGroup">
-      <div class="chip" onclick="toggleChip(this,'senGroup')">จูเนียร์</div>
-      <div class="chip" onclick="toggleChip(this,'senGroup')">มิดเลเวล</div>
-      <div class="chip" onclick="toggleChip(this,'senGroup')">ซีเนียร์</div>
-      <div class="chip" onclick="toggleChip(this,'senGroup')">หัวหน้าทีม</div>
-      <div class="chip" onclick="toggleChip(this,'senGroup')">ผู้บริหาร</div>
-      <div class="chip" onclick="toggleChip(this,'senGroup')">เจ้าของกิจการ</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ขนาดองค์กร / ทีม</label>
-    <select id="f_orgsize" onchange="updatePreview()">
-      <option value="">-- เลือก --</option>
-      <option value="solo">คนเดียว / Solopreneur</option>
-      <option value="small">ขนาดเล็ก (2–10 คน)</option>
-      <option value="medium">ขนาดกลาง (11–100 คน)</option>
-      <option value="large">ขนาดใหญ่ (100+ คน)</option>
-      <option value="enterprise">องค์กรใหญ่ / รัฐบาล</option>
-    </select>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความเชี่ยวชาญพิเศษ (เพิ่มเติม)</label>
-    <input type="text" id="f_expertise" placeholder="เช่น Economic Geography, Solar Energy, FinTech" oninput="updatePreview()">
-  </div>
-  <div class="section-nav">
-    <button class="btn btn-prev" onclick="prevStep()">← กลับ</button>
-    <button class="btn btn-next" onclick="nextStep()">ถัดไป — เป้าหมาย →</button>
-  </div>
+  <div class="section-header"><div class="section-num">2</div><div><div class="section-title">อาชีพ & บทบาทของคุณ</div><div class="section-desc">AI จะปรับโทนและภาษาให้เหมาะสมกับสาขาอาชีพ</div></div></div>
+  <div class="field-group"><label class="field-label">สาขาอาชีพหลัก <span>*</span></label><select id="f_sector" onchange="loadRoles();updatePreview()"><option value="">-- เลือกสาขา --</option><option value="business">💼 ธุรกิจ & บริหาร</option><option value="medical">🏥 การแพทย์ & สุขภาพ</option><option value="finance">📈 การเงิน & การลงทุน</option><option value="education">🎓 การศึกษา & วิชาการ</option><option value="tech">💻 เทคโนโลยี & โปรแกรม</option><option value="creative">🎨 ครีเอทีฟ & การตลาด</option><option value="legal">⚖️ กฎหมาย & การปกครอง</option><option value="agriculture">🌾 เกษตรกรรม & อาหาร</option><option value="realestate">🏢 อสังหาริมทรัพย์</option><option value="hospitality">🏨 การท่องเที่ยว & บริการ</option><option value="freelance">🔗 อิสระ / หลายด้าน</option></select></div>
+  <div class="field-group"><label class="field-label">ตำแหน่ง / บทบาทเฉพาะ</label><select id="f_role" onchange="updatePreview()"><option value="">-- เลือกสาขาก่อน --</option></select></div>
+  <div class="field-group"><label class="field-label">ระดับอาวุโส</label><div class="chip-group" id="senGroup"><div class="chip" onclick="toggleChip(this)">จูเนียร์</div><div class="chip" onclick="toggleChip(this)">มิดเลเวล</div><div class="chip" onclick="toggleChip(this)">ซีเนียร์</div><div class="chip" onclick="toggleChip(this)">หัวหน้าทีม</div><div class="chip" onclick="toggleChip(this)">ผู้บริหาร</div><div class="chip" onclick="toggleChip(this)">เจ้าของกิจการ</div></div></div>
+  <div class="field-group"><label class="field-label">ขนาดองค์กร / ทีม</label><select id="f_orgsize" onchange="updatePreview()"><option value="">-- เลือก --</option><option value="solo">คนเดียว / Solopreneur</option><option value="small">ขนาดเล็ก (2–10 คน)</option><option value="medium">ขนาดกลาง (11–100 คน)</option><option value="large">ขนาดใหญ่ (100+ คน)</option><option value="enterprise">องค์กรใหญ่ / รัฐบาล</option></select></div>
+  <div class="field-group"><label class="field-label">ความเชี่ยวชาญพิเศษ</label><input type="text" id="f_expertise" placeholder="เช่น Economic Geography, Solar Energy, FinTech" oninput="updatePreview()"></div>
+  <div class="section-nav"><button class="btn btn-prev" onclick="prevStep()">← กลับ</button><button class="btn btn-next" onclick="nextStep()">ถัดไป — เป้าหมาย →</button></div>
 </div>
 
-<!-- SECTION 3: Goals -->
+<!-- S3 -->
 <div class="section" id="sec3">
-  <div class="section-header">
-    <div class="section-num">3</div>
-    <div><div class="section-title">เป้าหมายการใช้ AI</div><div class="section-desc">เลือกสิ่งที่คุณต้องการให้ AI ช่วยได้มากที่สุด</div></div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">กิจกรรมหลักที่ต้องการ AI ช่วย <span>*</span></label>
-    <div class="chip-group" id="goalGroup">
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">📝 เขียนและร่างเอกสาร</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">🔍 วิเคราะห์ข้อมูล</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">💡 ระดมไอเดีย</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">📊 สรุปรายงาน</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">🌐 แปลภาษา</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">💻 เขียนโค้ด</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">📣 การตลาดและโฆษณา</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">🤝 การนำเสนอ</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">⚖️ วางแผนกลยุทธ์</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">🧠 ที่ปรึกษาส่วนตัว</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">📚 เรียนรู้ทักษะใหม่</div>
-      <div class="chip" onclick="toggleChip(this,'goalGroup')">🔧 แก้ปัญหาเฉพาะหน้า</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความถี่การใช้งานโดยประมาณ</label>
-    <div class="chip-group" id="freqGroup">
-      <div class="chip" onclick="toggleChip(this,'freqGroup')">ทุกวัน</div>
-      <div class="chip" onclick="toggleChip(this,'freqGroup')">สัปดาห์ละหลายครั้ง</div>
-      <div class="chip" onclick="toggleChip(this,'freqGroup')">สัปดาห์ละครั้ง</div>
-      <div class="chip" onclick="toggleChip(this,'freqGroup')">เฉพาะงานสำคัญ</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ปัญหาหรือความท้าทายที่ต้องการให้ AI ช่วยแก้ไขมากที่สุด</label>
-    <textarea id="f_challenge" placeholder="เช่น ต้องการลดเวลาในการร่างรายงานจาก 3 ชั่วโมงเหลือ 30 นาที, ต้องการวิเคราะห์ตลาดคู่แข่งอย่างรวดเร็ว..." oninput="updatePreview()"></textarea>
-  </div>
-  <div class="section-nav">
-    <button class="btn btn-prev" onclick="prevStep()">← กลับ</button>
-    <button class="btn btn-next" onclick="nextStep()">ถัดไป — สไตล์การตอบ →</button>
-  </div>
+  <div class="section-header"><div class="section-num">3</div><div><div class="section-title">เป้าหมายการใช้ AI</div><div class="section-desc">เลือกสิ่งที่คุณต้องการให้ AI ช่วยได้มากที่สุด</div></div></div>
+  <div class="field-group"><label class="field-label">กิจกรรมหลักที่ต้องการ AI ช่วย <span>*</span></label><div class="chip-group" id="goalGroup"><div class="chip" onclick="toggleChip(this)">📝 เขียนและร่างเอกสาร</div><div class="chip" onclick="toggleChip(this)">🔍 วิเคราะห์ข้อมูล</div><div class="chip" onclick="toggleChip(this)">💡 ระดมไอเดีย</div><div class="chip" onclick="toggleChip(this)">📊 สรุปรายงาน</div><div class="chip" onclick="toggleChip(this)">🌐 แปลภาษา</div><div class="chip" onclick="toggleChip(this)">💻 เขียนโค้ด</div><div class="chip" onclick="toggleChip(this)">📣 การตลาดและโฆษณา</div><div class="chip" onclick="toggleChip(this)">🤝 การนำเสนอ</div><div class="chip" onclick="toggleChip(this)">⚖️ วางแผนกลยุทธ์</div><div class="chip" onclick="toggleChip(this)">🧠 ที่ปรึกษาส่วนตัว</div><div class="chip" onclick="toggleChip(this)">📚 เรียนรู้ทักษะใหม่</div><div class="chip" onclick="toggleChip(this)">🔧 แก้ปัญหาเฉพาะหน้า</div></div></div>
+  <div class="field-group"><label class="field-label">ความถี่การใช้งาน</label><div class="chip-group" id="freqGroup"><div class="chip" onclick="toggleChip(this)">ทุกวัน</div><div class="chip" onclick="toggleChip(this)">สัปดาห์ละหลายครั้ง</div><div class="chip" onclick="toggleChip(this)">สัปดาห์ละครั้ง</div><div class="chip" onclick="toggleChip(this)">เฉพาะงานสำคัญ</div></div></div>
+  <div class="field-group"><label class="field-label">ความท้าทายที่ต้องการให้ AI แก้ไข</label><textarea id="f_challenge" placeholder="เช่น ต้องการลดเวลาในการร่างรายงานจาก 3 ชั่วโมงเหลือ 30 นาที..." oninput="updatePreview()"></textarea></div>
+  <div class="section-nav"><button class="btn btn-prev" onclick="prevStep()">← กลับ</button><button class="btn btn-next" onclick="nextStep()">ถัดไป — สไตล์การตอบ →</button></div>
 </div>
 
-<!-- SECTION 4: Style -->
+<!-- S4 -->
 <div class="section" id="sec4">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <div><div class="section-title">สไตล์การตอบสนองของ AI</div><div class="section-desc">ปรับให้ AI ตอบในรูปแบบที่เหมาะกับการทำงานของคุณ</div></div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความยาวของคำตอบ</label>
-    <div class="slider-row">
-      <div class="slider-labels"><span>กระชับมาก</span><span>สมดุล</span><span>ละเอียดมาก</span></div>
-      <input type="range" id="sl_length" min="1" max="10" value="5" oninput="updateSlider(this);updatePreview()">
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความเป็นทางการ</label>
-    <div class="slider-row">
-      <div class="slider-labels"><span>ลำลอง / เป็นกันเอง</span><span>กลาง</span><span>เป็นทางการมาก</span></div>
-      <input type="range" id="sl_formal" min="1" max="10" value="6" oninput="updateSlider(this);updatePreview()">
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">เชิงรุก vs. ตอบตามที่ถาม</label>
-    <div class="slider-row">
-      <div class="slider-labels"><span>ตอบตรงๆ</span><span></span><span>เสนอแนะ/วิเคราะห์เพิ่ม</span></div>
-      <input type="range" id="sl_proactive" min="1" max="10" value="7" oninput="updateSlider(this);updatePreview()">
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">รูปแบบการแสดงผลที่ต้องการ</label>
-    <div class="chip-group" id="fmtGroup">
-      <div class="chip" onclick="toggleChip(this,'fmtGroup')">📋 Bullet Points</div>
-      <div class="chip" onclick="toggleChip(this,'fmtGroup')">📄 ย่อหน้า Prose</div>
-      <div class="chip" onclick="toggleChip(this,'fmtGroup')">📊 ตาราง / Table</div>
-      <div class="chip" onclick="toggleChip(this,'fmtGroup')">🔢 ขั้นตอน Step-by-step</div>
-      <div class="chip" onclick="toggleChip(this,'fmtGroup')">📌 Executive Summary ก่อน</div>
-      <div class="chip" onclick="toggleChip(this,'fmtGroup')">💬 บทสนทนา Q&A</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">วิธีคิดที่ต้องการให้ AI ใช้</label>
-    <div class="chip-group" id="thinkGroup">
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">🏗️ First Principles</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">🔴 Devil's Advocate</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">📐 Scenario Analysis</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">🧩 Systems Thinking</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">📉 Risk-First Framing</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">💰 ROI-Driven</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">🌍 Geopolitical Lens</div>
-      <div class="chip" onclick="toggleChip(this,'thinkGroup')">🧬 Evidence-Based</div>
-    </div>
-  </div>
-  <div class="section-nav">
-    <button class="btn btn-prev" onclick="prevStep()">← กลับ</button>
-    <button class="btn btn-next" onclick="nextStep()">ถัดไป — ทักษะ AI →</button>
-  </div>
+  <div class="section-header"><div class="section-num">4</div><div><div class="section-title">สไตล์การตอบสนองของ AI</div><div class="section-desc">ปรับให้ AI ตอบในรูปแบบที่เหมาะกับการทำงานของคุณ</div></div></div>
+  <div class="field-group"><label class="field-label">ความยาวของคำตอบ</label><div class="slider-row"><div class="slider-labels"><span>กระชับมาก</span><span>สมดุล</span><span>ละเอียดมาก</span></div><input type="range" id="sl_length" min="1" max="10" value="5" oninput="updateSlider(this);updatePreview()"></div></div>
+  <div class="field-group"><label class="field-label">ความเป็นทางการ</label><div class="slider-row"><div class="slider-labels"><span>ลำลอง / เป็นกันเอง</span><span>กลาง</span><span>เป็นทางการมาก</span></div><input type="range" id="sl_formal" min="1" max="10" value="6" oninput="updateSlider(this);updatePreview()"></div></div>
+  <div class="field-group"><label class="field-label">เชิงรุก vs. ตอบตามที่ถาม</label><div class="slider-row"><div class="slider-labels"><span>ตอบตรงๆ</span><span></span><span>เสนอแนะ/วิเคราะห์เพิ่ม</span></div><input type="range" id="sl_proactive" min="1" max="10" value="7" oninput="updateSlider(this);updatePreview()"></div></div>
+  <div class="field-group"><label class="field-label">รูปแบบการแสดงผล</label><div class="chip-group" id="fmtGroup"><div class="chip" onclick="toggleChip(this)">📋 Bullet Points</div><div class="chip" onclick="toggleChip(this)">📄 ย่อหน้า Prose</div><div class="chip" onclick="toggleChip(this)">📊 ตาราง / Table</div><div class="chip" onclick="toggleChip(this)">🔢 ขั้นตอน Step-by-step</div><div class="chip" onclick="toggleChip(this)">📌 Executive Summary ก่อน</div><div class="chip" onclick="toggleChip(this)">💬 บทสนทนา Q&A</div></div></div>
+  <div class="field-group"><label class="field-label">วิธีคิดที่ต้องการให้ AI ใช้</label><div class="chip-group" id="thinkGroup"><div class="chip" onclick="toggleChip(this)">🏗️ First Principles</div><div class="chip" onclick="toggleChip(this)">🔴 Devil's Advocate</div><div class="chip" onclick="toggleChip(this)">📐 Scenario Analysis</div><div class="chip" onclick="toggleChip(this)">🧩 Systems Thinking</div><div class="chip" onclick="toggleChip(this)">📉 Risk-First Framing</div><div class="chip" onclick="toggleChip(this)">💰 ROI-Driven</div><div class="chip" onclick="toggleChip(this)">🌍 Geopolitical Lens</div><div class="chip" onclick="toggleChip(this)">🧬 Evidence-Based</div></div></div>
+  <div class="section-nav"><button class="btn btn-prev" onclick="prevStep()">← กลับ</button><button class="btn btn-next" onclick="nextStep()">ถัดไป — ทักษะ AI →</button></div>
 </div>
 
-<!-- SECTION 5: AI Skills -->
+<!-- S5 -->
 <div class="section" id="sec5">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <div><div class="section-title">ทักษะพิเศษของ AI ที่ต้องการ</div><div class="section-desc">AI จะเน้นความสามารถด้านเหล่านี้ในการช่วยงานคุณ</div></div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความสามารถด้านข้อมูลและการวิเคราะห์</label>
-    <div class="chip-group" id="skill1Group">
-      <div class="chip" onclick="toggleChip(this,'skill1Group')">📊 Financial Modeling</div>
-      <div class="chip" onclick="toggleChip(this,'skill1Group')">📉 Technical Analysis</div>
-      <div class="chip" onclick="toggleChip(this,'skill1Group')">📰 Market Research</div>
-      <div class="chip" onclick="toggleChip(this,'skill1Group')">🔬 Academic Research</div>
-      <div class="chip" onclick="toggleChip(this,'skill1Group')">📡 Data Visualization</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความสามารถด้านการเขียนและสื่อสาร</label>
-    <div class="chip-group" id="skill2Group">
-      <div class="chip" onclick="toggleChip(this,'skill2Group')">📝 รายงานทางการ</div>
-      <div class="chip" onclick="toggleChip(this,'skill2Group')">📨 อีเมล & การโต้ตอบ</div>
-      <div class="chip" onclick="toggleChip(this,'skill2Group')">📣 Content Marketing</div>
-      <div class="chip" onclick="toggleChip(this,'skill2Group')">🎤 Presentation Script</div>
-      <div class="chip" onclick="toggleChip(this,'skill2Group')">📜 เอกสารราชการ</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">ความสามารถด้านเทคนิค</label>
-    <div class="chip-group" id="skill3Group">
-      <div class="chip" onclick="toggleChip(this,'skill3Group')">🐍 Python</div>
-      <div class="chip" onclick="toggleChip(this,'skill3Group')">🌐 JavaScript / Web</div>
-      <div class="chip" onclick="toggleChip(this,'skill3Group')">🗄️ SQL & Database</div>
-      <div class="chip" onclick="toggleChip(this,'skill3Group')">🤖 AI/ML Concepts</div>
-      <div class="chip" onclick="toggleChip(this,'skill3Group')">⚙️ Automation & API</div>
-      <div class="chip" onclick="toggleChip(this,'skill3Group')">📱 Mobile / App Dev</div>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">หัวข้อความรู้เฉพาะทาง (ระบุเพิ่มเติม)</label>
-    <input type="text" id="f_domain" placeholder="เช่น Thai SET market, Solar ROI, Longevity medicine, Supply chain..." oninput="updatePreview()">
-  </div>
-  <div class="field-group">
-    <label class="field-label">สิ่งที่ต้องการให้ AI หลีกเลี่ยง</label>
-    <textarea id="f_avoid" placeholder="เช่น อย่าใช้ภาษาเชิงพูดมากเกินไป, อย่า assume ข้อมูลที่ไม่มี, อย่าให้คำแนะนำที่ไม่มีหลักฐานรองรับ..." oninput="updatePreview()"></textarea>
-  </div>
-  <div class="section-nav">
-    <button class="btn btn-prev" onclick="prevStep()">← กลับ</button>
-    <button class="btn btn-next" onclick="nextStep()">ถัดไป — ลำดับความสำคัญ →</button>
-  </div>
+  <div class="section-header"><div class="section-num">5</div><div><div class="section-title">ทักษะพิเศษของ AI</div><div class="section-desc">AI จะเน้นความสามารถด้านเหล่านี้ในการช่วยงานคุณ</div></div></div>
+  <div class="field-group"><label class="field-label">ด้านข้อมูลและการวิเคราะห์</label><div class="chip-group" id="skill1Group"><div class="chip" onclick="toggleChip(this)">📊 Financial Modeling</div><div class="chip" onclick="toggleChip(this)">📉 Technical Analysis</div><div class="chip" onclick="toggleChip(this)">📰 Market Research</div><div class="chip" onclick="toggleChip(this)">🔬 Academic Research</div><div class="chip" onclick="toggleChip(this)">📡 Data Visualization</div></div></div>
+  <div class="field-group"><label class="field-label">ด้านการเขียนและสื่อสาร</label><div class="chip-group" id="skill2Group"><div class="chip" onclick="toggleChip(this)">📝 รายงานทางการ</div><div class="chip" onclick="toggleChip(this)">📨 อีเมล & การโต้ตอบ</div><div class="chip" onclick="toggleChip(this)">📣 Content Marketing</div><div class="chip" onclick="toggleChip(this)">🎤 Presentation Script</div><div class="chip" onclick="toggleChip(this)">📜 เอกสารราชการ</div></div></div>
+  <div class="field-group"><label class="field-label">ด้านเทคนิค</label><div class="chip-group" id="skill3Group"><div class="chip" onclick="toggleChip(this)">🐍 Python</div><div class="chip" onclick="toggleChip(this)">🌐 JavaScript / Web</div><div class="chip" onclick="toggleChip(this)">🗄️ SQL & Database</div><div class="chip" onclick="toggleChip(this)">🤖 AI/ML Concepts</div><div class="chip" onclick="toggleChip(this)">⚙️ Automation & API</div><div class="chip" onclick="toggleChip(this)">📱 Mobile / App Dev</div></div></div>
+  <div class="field-group"><label class="field-label">หัวข้อความรู้เฉพาะทาง</label><input type="text" id="f_domain" placeholder="เช่น Thai SET market, Solar ROI, Longevity medicine..." oninput="updatePreview()"></div>
+  <div class="field-group"><label class="field-label">สิ่งที่ต้องการให้ AI หลีกเลี่ยง</label><textarea id="f_avoid" placeholder="เช่น อย่าใช้ภาษาเชิงพูดมากเกินไป, อย่า assume ข้อมูลที่ไม่มี..." oninput="updatePreview()"></textarea></div>
+  <div class="section-nav"><button class="btn btn-prev" onclick="prevStep()">← กลับ</button><button class="btn btn-next" onclick="nextStep()">ถัดไป — ลำดับความสำคัญ →</button></div>
 </div>
 
-<!-- SECTION 6: Priority -->
+<!-- S6 -->
 <div class="section" id="sec6">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <div><div class="section-title">ลำดับความสำคัญ</div><div class="section-desc">ลากเพื่อจัดเรียงว่าสิ่งใดสำคัญที่สุดสำหรับคุณ</div></div>
-  </div>
-  <div class="field-group">
-    <label class="field-label">จัดลำดับ — ลากจาก สำคัญที่สุด → น้อยที่สุด</label>
+  <div class="section-header"><div class="section-num">6</div><div><div class="section-title">ลำดับความสำคัญ</div><div class="section-desc">ลากเพื่อจัดเรียงว่าสิ่งใดสำคัญที่สุดสำหรับคุณ</div></div></div>
+  <div class="field-group"><label class="field-label">จัดลำดับ — ลากจาก สำคัญที่สุด → น้อยที่สุด</label>
     <ul class="priority-list" id="priorityList">
       <li class="priority-item" draggable="true" data-id="accuracy"><span class="drag-handle">⠿</span><span class="priority-rank">1</span><span>🎯 ความถูกต้องและแม่นยำ</span></li>
       <li class="priority-item" draggable="true" data-id="speed"><span class="drag-handle">⠿</span><span class="priority-rank">2</span><span>⚡ ความรวดเร็วของคำตอบ</span></li>
@@ -696,29 +310,16 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
       <li class="priority-item" draggable="true" data-id="safety"><span class="drag-handle">⠿</span><span class="priority-rank">6</span><span>🛡️ ความระมัดระวังและความปลอดภัย</span></li>
     </ul>
   </div>
-  <div class="field-group">
-    <label class="field-label">ข้อมูลเพิ่มเติมที่อยากบอก AI (บริบทส่วนตัว)</label>
-    <textarea id="f_context" placeholder="เช่น ผมมีพื้นฐาน PhD ด้าน Economic Geography, ทำงานทั้งในไทยและกัมพูชา, สนใจ AI workflows และ renewable energy..." oninput="updatePreview()"></textarea>
-  </div>
-  <div class="section-nav">
-    <button class="btn btn-prev" onclick="prevStep()">← กลับ</button>
-    <button class="btn btn-next" onclick="nextStep()">ถัดไป — สร้าง Prompt →</button>
-  </div>
+  <div class="field-group"><label class="field-label">ข้อมูลเพิ่มเติม / บริบทส่วนตัว</label><textarea id="f_context" placeholder="เช่น ผมมีพื้นฐาน PhD ด้าน Economic Geography, ทำงานทั้งในไทยและกัมพูชา..." oninput="updatePreview()"></textarea></div>
+  <div class="section-nav"><button class="btn btn-prev" onclick="prevStep()">← กลับ</button><button class="btn btn-next" onclick="nextStep()">ถัดไป — สร้าง Prompt →</button></div>
 </div>
 
-<!-- SECTION 7: Summary & Generate -->
+<!-- S7 -->
 <div class="section" id="sec7">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <div><div class="section-title">สร้าง AI System Prompt</div><div class="section-desc">ตรวจสอบข้อมูลสรุปและกด Generate เพื่อรับ Prompt สำหรับใช้กับ AI</div></div>
-  </div>
+  <div class="section-header"><div class="section-num">7</div><div><div class="section-title">สร้าง AI System Prompt</div><div class="section-desc">ตรวจสอบข้อมูลสรุปและกด Generate เพื่อรับ Prompt พร้อมคู่มือการติดตั้งทุก Platform</div></div></div>
   <div id="summaryBox" style="background:var(--paper);border-radius:14px;padding:1.4rem;margin-bottom:1.5rem;border:1px solid var(--border);font-size:12.5px;line-height:1.9;"></div>
-  <button class="btn btn-generate" onclick="generatePrompt()">
-    ✦ สร้าง System Prompt ของฉัน
-  </button>
-  <div class="section-nav" style="margin-top:1rem;">
-    <button class="btn btn-prev" onclick="prevStep()">← แก้ไขข้อมูล</button>
-  </div>
+  <button class="btn btn-generate" onclick="generatePrompt()">✦ สร้าง System Prompt + คู่มือติดตั้ง</button>
+  <div class="section-nav" style="margin-top:1rem;"><button class="btn btn-prev" onclick="prevStep()">← แก้ไขข้อมูล</button></div>
 </div>
 
 </div><!-- end left-col -->
@@ -726,24 +327,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
 <!-- RIGHT PANEL -->
 <div class="right-panel">
   <div class="preview-card">
-    <div class="preview-header">
-      <span class="preview-header-title">AI Preview</span>
-      <div class="preview-live-badge"><div class="pulse"></div>Live</div>
-    </div>
+    <div class="preview-header"><span class="preview-header-title">AI Preview</span><div class="preview-live-badge"><div class="pulse"></div>Live</div></div>
     <div class="preview-body" id="previewBody">
-      <div class="preview-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <p>กรอกข้อมูลเพื่อดู<br>AI Profile ของคุณ</p>
-      </div>
+      <div class="preview-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p>กรอกข้อมูลเพื่อดู<br>AI Profile ของคุณ</p></div>
     </div>
   </div>
-
-  <!-- LIVE TEST -->
   <div class="test-container" id="testContainer" style="display:none;">
-    <div class="test-header">
-      <span class="test-title">ทดสอบ AI ทันที</span>
-      <span class="test-badge">LIVE TEST</span>
-    </div>
+    <div class="test-header"><span class="test-title">ทดสอบ AI ทันที</span><span class="test-badge">LIVE TEST</span></div>
     <div class="chat-area" id="chatArea"></div>
     <div class="test-input-row">
       <input type="text" class="test-input" id="testInput" placeholder="พิมพ์คำถามเพื่อทดสอบ AI..." onkeydown="if(event.key==='Enter')sendTest()">
@@ -751,254 +341,440 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
     </div>
   </div>
 </div>
-
 </div><!-- end app-shell -->
 
-<!-- OUTPUT MODAL -->
+<!-- ══════════ OUTPUT MODAL ══════════ -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-header">
-      <span class="modal-title">System Prompt ของคุณ</span>
+      <span class="modal-title">System Prompt + คู่มือติดตั้ง</span>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body">
-      <pre class="output-box" id="outputBox"></pre>
-      <div class="modal-actions">
-        <button class="btn-copy" id="copyBtn" onclick="copyPrompt()">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          คัดลอก Prompt
-        </button>
-        <button class="btn-dl" onclick="downloadPrompt()">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          บันทึกไฟล์
-        </button>
-      </div>
+
+    <!-- TABS -->
+    <div class="modal-tabs">
+      <div class="modal-tab active" onclick="switchTab('tab-prompt')" id="tabt-prompt"><span class="modal-tab-icon">📄</span> System Prompt</div>
+      <div class="modal-tab" onclick="switchTab('tab-chatgpt')" id="tabt-chatgpt"><span class="modal-tab-icon">🟢</span> ChatGPT</div>
+      <div class="modal-tab" onclick="switchTab('tab-claude')" id="tabt-claude"><span class="modal-tab-icon">🟠</span> Claude</div>
+      <div class="modal-tab" onclick="switchTab('tab-gemini')" id="tabt-gemini"><span class="modal-tab-icon">🔵</span> Gemini</div>
+      <div class="modal-tab" onclick="switchTab('tab-copilot')" id="tabt-copilot"><span class="modal-tab-icon">🟣</span> Copilot</div>
+      <div class="modal-tab" onclick="switchTab('tab-compare')" id="tabt-compare"><span class="modal-tab-icon">📊</span> เปรียบเทียบ</div>
     </div>
+
+    <div class="modal-body">
+
+      <!-- ── TAB: PROMPT ── -->
+      <div class="tab-panel active" id="tab-prompt">
+        <pre class="output-box" id="outputBox"></pre>
+        <div class="modal-actions">
+          <button class="btn-copy" id="copyBtn" onclick="copyPrompt()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            คัดลอก Prompt
+          </button>
+          <button class="btn-dl" onclick="downloadPrompt()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            บันทึกไฟล์
+          </button>
+        </div>
+      </div>
+
+      <!-- ── TAB: CHATGPT ── -->
+      <div class="tab-panel" id="tab-chatgpt">
+        <div class="platform-card open" id="pc-chatgpt-custom">
+          <div class="platform-header" onclick="toggleCard('pc-chatgpt-custom')">
+            <div class="platform-logo" style="background:#10a37f20;">🟢</div>
+            <div class="platform-name">ChatGPT — Custom Instructions</div>
+            <span class="platform-badge badge-both">Free & Plus</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">วิธีนี้ทำงานทุก conversation โดยอัตโนมัติ เหมาะสำหรับผู้ใช้ทั่วไป ไม่ต้องวาง Prompt ซ้ำทุกครั้ง</p>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">เปิด Custom Instructions</div><div class="step-desc">คลิกรูปโปรไฟล์ (มุมขวาล่าง) <span class="arrow">→</span> <code>Customize ChatGPT</code></div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">กรอกในช่อง "What would you like ChatGPT to know about you?"</div><div class="step-desc">วางส่วน <strong>USER PROFILE</strong> และ <strong>ADDITIONAL CONTEXT</strong> จาก Prompt ของคุณ (ไม่เกิน 1,500 ตัวอักษร)</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">กรอกในช่อง "How would you like ChatGPT to respond?"</div><div class="step-desc">วางส่วน <strong>RESPONSE STYLE DIRECTIVES</strong>, <strong>COGNITIVE FRAMEWORKS</strong> และ <strong>CONSTRAINTS</strong></div></div></li>
+              <li class="step-item"><div class="step-bullet">4</div><div class="step-content"><div class="step-title">กด Save</div><div class="step-desc">การตั้งค่านี้จะมีผลกับ conversation ใหม่ทุกอัน</div></div></li>
+            </ul>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> Custom Instructions มีขีดจำกัด 1,500 ตัวอักษรต่อช่อง — ให้ย่อเฉพาะส่วนสำคัญ หรือใช้วิธี GPT Builder ด้านล่างสำหรับ Prompt ยาว</div>
+            <button class="platform-copy-btn" onclick="copyForPlatform('chatgpt-ci')">📋 คัดลอกเฉพาะส่วน Custom Instructions</button>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-chatgpt-gpt">
+          <div class="platform-header" onclick="toggleCard('pc-chatgpt-gpt')">
+            <div class="platform-logo" style="background:#10a37f20;">🤖</div>
+            <div class="platform-name">ChatGPT — สร้าง Custom GPT (แนะนำ)</div>
+            <span class="platform-badge badge-paid">Plus / Team</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">สร้าง GPT ส่วนตัวที่มี System Prompt เต็มรูปแบบ ไม่มีขีดจำกัดอักษร สามารถแชร์หรือเก็บไว้ใช้คนเดียวก็ได้</p>
+            <div class="path-visual">chatgpt.com <span class="arrow">→</span> Explore GPTs <span class="arrow">→</span> + Create <span class="arrow">→</span> Configure tab</div>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">ไปที่ Create a GPT</div><div class="step-desc">เปิด <a href="https://chatgpt.com/gpts/editor" target="_blank">chatgpt.com/gpts/editor</a> แล้วเลือกแท็บ <code>Configure</code></div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">ตั้งชื่อและ Description</div><div class="step-desc">ตั้งชื่อเช่น <code>My Strategic Advisor</code> พร้อมคำอธิบายสั้นๆ</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">วาง System Prompt ทั้งหมดในช่อง Instructions</div><div class="step-desc">ช่องนี้รองรับ Prompt ยาวมาก (32,000 ตัวอักษร) — วาง Prompt ที่ได้จาก Configurator ได้เลยทั้งหมด</div></div></li>
+              <li class="step-item"><div class="step-bullet">4</div><div class="step-content"><div class="step-title">ตั้งค่า Conversation starters (ตัวเลือก)</div><div class="step-desc">เพิ่มคำถามเริ่มต้นที่ใช้บ่อย เช่น "วิเคราะห์ตลาดให้หน่อย" หรือ "ช่วยร่างรายงานสรุป"</div></div></li>
+              <li class="step-item"><div class="step-bullet">5</div><div class="step-content"><div class="step-title">บันทึกและเลือก Access Level</div><div class="step-desc">เลือก <code>Only me</code> เพื่อใช้งานส่วนตัว หรือ <code>Anyone with a link</code> เพื่อแชร์ทีม</div></div></li>
+            </ul>
+            <div class="tip-box"><strong>💡 แนะนำ:</strong> วิธีนี้ดีที่สุดสำหรับ ChatGPT — System Prompt เต็ม, ไม่หายหลังปิดหน้าต่าง, เข้าถึงได้จาก sidebar ซ้ายมือตลอดเวลา</div>
+            <button class="platform-copy-btn" onclick="copyForPlatform('full')">📋 คัดลอก Full System Prompt</button>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-chatgpt-memory">
+          <div class="platform-header" onclick="toggleCard('pc-chatgpt-memory')">
+            <div class="platform-logo" style="background:#10a37f20;">🧠</div>
+            <div class="platform-name">ChatGPT — Memory Feature</div>
+            <span class="platform-badge badge-both">Free & Plus</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">ให้ ChatGPT จำบริบทของคุณข้ามทุก session โดยไม่ต้องวาง Prompt ซ้ำ</p>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">เปิด Memory</div><div class="step-desc">Settings <span class="arrow">→</span> Personalization <span class="arrow">→</span> Memory <span class="arrow">→</span> เปิด Toggle</div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">บอก ChatGPT ให้จำข้อมูลของคุณ</div><div class="step-desc">พิมพ์: <code>"Please remember the following about me and use it in all future conversations:"</code> แล้วต่อด้วยส่วน USER PROFILE จาก Prompt ของคุณ</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">ตรวจสอบ Memory</div><div class="step-desc">Settings <span class="arrow">→</span> Personalization <span class="arrow">→</span> Manage memories เพื่อดูและแก้ไขสิ่งที่จำ</div></div></li>
+            </ul>
+            <div class="warn-box">⚠️ Memory มีขีดจำกัดและอาจถูก overwrite — ใช้ร่วมกับ Custom Instructions หรือ Custom GPT เพื่อผลลัพธ์ที่ดีที่สุด</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: CLAUDE ── -->
+      <div class="tab-panel" id="tab-claude">
+        <div class="platform-card open" id="pc-claude-project">
+          <div class="platform-header" onclick="toggleCard('pc-claude-project')">
+            <div class="platform-logo" style="background:#d4761520;">🟠</div>
+            <div class="platform-name">Claude — Projects (แนะนำสูงสุด)</div>
+            <span class="platform-badge badge-paid">Pro / Team</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">Projects คือฟีเจอร์ที่ทรงพลังที่สุดของ Claude สำหรับการตั้งค่า AI ส่วนตัว — System Prompt เต็ม + Knowledge Base + ประวัติการสนทนาที่ต่อเนื่อง</p>
+            <div class="path-visual">claude.ai <span class="arrow">→</span> Projects (sidebar) <span class="arrow">→</span> + New Project</div>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">สร้าง New Project</div><div class="step-desc">คลิก <code>Projects</code> ใน sidebar ซ้าย <span class="arrow">→</span> <code>+ New project</code> — ตั้งชื่อเช่น "My AI Advisor"</div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">เปิด Project Instructions</div><div class="step-desc">ในหน้า Project <span class="arrow">→</span> คลิก <code>Edit project instructions</code> (ไอคอนดินสอ มุมขวาบน)</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">วาง System Prompt ทั้งหมด</div><div class="step-desc">วาง Prompt ที่ได้จาก Configurator ลงในช่อง Instructions — รองรับได้ถึง ~6,000 tokens (~24,000 ตัวอักษร)</div></div></li>
+              <li class="step-item"><div class="step-bullet">4</div><div class="step-content"><div class="step-title">อัปโหลด Knowledge Files (ตัวเลือก)</div><div class="step-desc">ลาก PDF, .txt, .md เข้า Project เพื่อให้ Claude อ้างอิงข้อมูลเฉพาะของคุณ เช่น รายงาน, ข้อมูลบริษัท, template</div></div></li>
+              <li class="step-item"><div class="step-bullet">5</div><div class="step-content"><div class="step-title">เริ่ม Conversation ใน Project</div><div class="step-desc">ทุก conversation ที่สร้างภายใน Project จะใช้ System Prompt และไฟล์ที่อัปโหลดโดยอัตโนมัติ</div></div></li>
+            </ul>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> สร้างหลาย Projects แยกตาม context เช่น "VIVA Clinic", "Investment", "Government Advisory" แต่ละอันมี Prompt และ Knowledge Base แยกกัน</div>
+            <button class="platform-copy-btn" onclick="copyForPlatform('full')">📋 คัดลอก Full System Prompt</button>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-claude-memory">
+          <div class="platform-header" onclick="toggleCard('pc-claude-memory')">
+            <div class="platform-logo" style="background:#d4761520;">🧠</div>
+            <div class="platform-name">Claude — User Preferences / Memory</div>
+            <span class="platform-badge badge-both">Free & Pro</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">เปิด Settings</div><div class="step-desc">คลิกรูปโปรไฟล์ <span class="arrow">→</span> <code>Settings</code> <span class="arrow">→</span> <code>User Preferences</code></div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">กรอก User Preferences</div><div class="step-desc">วางส่วน USER PROFILE และ style preferences — Claude จะจำข้ามทุก conversation</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">เปิด Memory (ถ้ามี)</div><div class="step-desc">Settings <span class="arrow">→</span> เปิด <code>Memory</code> เพื่อให้ Claude สรุปและจำบริบทสำคัญอัตโนมัติ</div></div></li>
+            </ul>
+            <div class="tip-box"><strong>💡 หมายเหตุ:</strong> User Preferences และ Memory ทำงานเป็น background context — ใช้ร่วมกับ Projects จะได้ผลลัพธ์ดีที่สุด</div>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-claude-api">
+          <div class="platform-header" onclick="toggleCard('pc-claude-api')">
+            <div class="platform-logo" style="background:#d4761520;">⚙️</div>
+            <div class="platform-name">Claude — API / Claude Code</div>
+            <span class="platform-badge badge-paid">Developer</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">สำหรับผู้ใช้ที่ต่อผ่าน API หรือ Claude Code — ส่ง System Prompt ผ่าน <code>system</code> parameter</p>
+            <div class="path-visual">POST /v1/messages<br>{ "system": "[YOUR PROMPT HERE]", ... }</div>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">เก็บ Prompt เป็นไฟล์ .md</div><div class="step-desc">บันทึกเป็น <code>CLAUDE.md</code> หรือ <code>system_prompt.md</code> ใน root directory ของโปรเจกต์</div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">โหลดและส่งเป็น system parameter</div><div class="step-desc">อ่านไฟล์แล้วส่งในฟิลด์ <code>"system"</code> ของ API request ทุกครั้ง</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">สำหรับ Claude Code</div><div class="step-desc">วางไว้ใน <code>CLAUDE.md</code> ที่ root — Claude Code จะอ่านอัตโนมัติ</div></div></li>
+            </ul>
+            <button class="platform-copy-btn" onclick="copyForPlatform('full')">📋 คัดลอก Full System Prompt</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: GEMINI ── -->
+      <div class="tab-panel" id="tab-gemini">
+        <div class="platform-card open" id="pc-gemini-gem">
+          <div class="platform-header" onclick="toggleCard('pc-gemini-gem')">
+            <div class="platform-logo" style="background:#1a73e820;">🔵</div>
+            <div class="platform-name">Gemini — Gems (แนะนำ)</div>
+            <span class="platform-badge badge-paid">Advanced / Business</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">Gems คือ Custom AI ของ Gemini คล้ายกับ Custom GPT — ตั้ง System Prompt ถาวรได้โดยไม่ต้องพิมพ์ซ้ำ</p>
+            <div class="path-visual">gemini.google.com <span class="arrow">→</span> Explore Gems <span class="arrow">→</span> + New Gem</div>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">ไปที่ Gem Manager</div><div class="step-desc">เปิด <a href="https://gemini.google.com/gems/view" target="_blank">gemini.google.com/gems</a> <span class="arrow">→</span> <code>+ New Gem</code></div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">ตั้งชื่อ Gem</div><div class="step-desc">เช่น "Strategic Advisor TH" พร้อม description สั้นๆ</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">วาง System Prompt ในช่อง Instructions</div><div class="step-desc">วาง Prompt ทั้งหมดจาก Configurator — Gems รองรับ Prompt ยาวมาก</div></div></li>
+              <li class="step-item"><div class="step-bullet">4</div><div class="step-content"><div class="step-title">Save และใช้งาน</div><div class="step-desc">Gem ที่สร้างจะปรากฏใน sidebar ซ้าย พร้อมใช้งานได้ทันที</div></div></li>
+            </ul>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> Gems รองรับการ upload เอกสาร Google Drive เป็น Knowledge Base ได้โดยตรง — เหมาะมากสำหรับผู้ใช้ Google Workspace</div>
+            <button class="platform-copy-btn" onclick="copyForPlatform('full')">📋 คัดลอก Full System Prompt</button>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-gemini-free">
+          <div class="platform-header" onclick="toggleCard('pc-gemini-free')">
+            <div class="platform-logo" style="background:#1a73e820;">💬</div>
+            <div class="platform-name">Gemini — วิธีใช้ฟรี (ไม่มี Gems)</div>
+            <span class="platform-badge badge-free">Free</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">Gemini ฟรีไม่มี Gems — ต้องวาง Prompt ที่ต้นทุกการสนทนา หรือใช้วิธีย่อ</p>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">สร้าง Template Conversation</div><div class="step-desc">วาง Prompt ทั้งหมดที่ต้น conversation ครั้งแรก แล้ว pin conversation นั้นไว้</div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">ใช้ Gemini Extensions</div><div class="step-desc">เปิด Extensions (Google Workspace, Drive, Docs) เพื่อให้ Gemini เข้าถึงบริบทงานของคุณแทน</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">ใช้ Prompt ย่อ</div><div class="step-desc">สร้าง "mini prompt" 2-3 บรรทัดสำหรับวางตอนต้น เช่น: <code>You are my strategic advisor. I'm [Name], [Role]. Respond in Thai, formal, analysis-first.</code></div></div></li>
+            </ul>
+            <button class="platform-copy-btn" onclick="copyForPlatform('mini')">📋 คัดลอก Mini Prompt (3 บรรทัด)</button>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-gemini-studio">
+          <div class="platform-header" onclick="toggleCard('pc-gemini-studio')">
+            <div class="platform-logo" style="background:#1a73e820;">🔬</div>
+            <div class="platform-name">Google AI Studio — System Instructions</div>
+            <span class="platform-badge badge-free">Free (Developer)</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">สำหรับนักพัฒนา — AI Studio รองรับ System Instructions เต็มรูปแบบ ฟรี</p>
+            <div class="path-visual">aistudio.google.com <span class="arrow">→</span> Create new prompt <span class="arrow">→</span> System instructions</div>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">ไปที่ <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></div><div class="step-desc">สร้าง <code>New Prompt</code> หรือ <code>New Chat</code></div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">เปิด System Instructions</div><div class="step-desc">คลิก <code>System Instructions</code> ในแถบด้านขวา แล้ววาง Prompt ทั้งหมด</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">บันทึกเป็น Template</div><div class="step-desc">กด <code>Save</code> เพื่อเก็บไว้ใช้ซ้ำ หรือ Export เป็น JSON สำหรับใช้กับ Gemini API</div></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: COPILOT ── -->
+      <div class="tab-panel" id="tab-copilot">
+        <div class="platform-card open" id="pc-copilot-main">
+          <div class="platform-header" onclick="toggleCard('pc-copilot-main')">
+            <div class="platform-logo" style="background:#7b2fbe20;">🟣</div>
+            <div class="platform-name">Microsoft Copilot — Copilot Studio</div>
+            <span class="platform-badge badge-paid">M365 / Business</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">Copilot Studio ช่วยสร้าง Custom Copilot พร้อม System Prompt สำหรับใช้งานใน Microsoft 365 environment</p>
+            <div class="path-visual">copilotstudio.microsoft.com <span class="arrow">→</span> + New agent</div>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">เปิด Copilot Studio</div><div class="step-desc">ไปที่ <a href="https://copilotstudio.microsoft.com" target="_blank">copilotstudio.microsoft.com</a> (ต้องมี Microsoft 365 subscription)</div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">สร้าง New Agent</div><div class="step-desc">คลิก <code>+ New agent</code> <span class="arrow">→</span> เลือก <code>Configure</code> mode</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">ตั้ง Instructions</div><div class="step-desc">ในส่วน <code>Instructions</code> วาง System Prompt จาก Configurator</div></div></li>
+              <li class="step-item"><div class="step-bullet">4</div><div class="step-content"><div class="step-title">Connect Knowledge Sources</div><div class="step-desc">เพิ่ม SharePoint sites, OneDrive files, หรือ websites เป็น Knowledge Base</div></div></li>
+              <li class="step-item"><div class="step-bullet">5</div><div class="step-content"><div class="step-title">Publish และใช้งาน</div><div class="step-desc">Deploy ใน Microsoft Teams, Outlook, หรือ Web Chat ได้เลย</div></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="platform-card" id="pc-copilot-free">
+          <div class="platform-header" onclick="toggleCard('pc-copilot-free')">
+            <div class="platform-logo" style="background:#7b2fbe20;">💬</div>
+            <div class="platform-name">Microsoft Copilot — วิธีใช้ทั่วไป</div>
+            <span class="platform-badge badge-free">Free</span>
+            <span class="platform-chevron">▼</span>
+          </div>
+          <div class="platform-body">
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">Copilot ฟรีที่ <a href="https://copilot.microsoft.com" target="_blank">copilot.microsoft.com</a> ไม่มี Custom System Prompt — ใช้วิธีวาง Prompt ที่ต้น conversation</p>
+            <ul class="step-list">
+              <li class="step-item"><div class="step-bullet">1</div><div class="step-content"><div class="step-title">เลือก Conversation Style</div><div class="step-desc">เลือก <code>More Precise</code> สำหรับงานวิเคราะห์และเอกสาร, <code>More Creative</code> สำหรับงาน content</div></div></li>
+              <li class="step-item"><div class="step-bullet">2</div><div class="step-content"><div class="step-title">วาง Mini Prompt ที่ต้นการสนทนา</div><div class="step-desc">ใช้ Prompt ย่อ 3-5 บรรทัดที่คลิกปุ่มด้านล่างเพื่อได้</div></div></li>
+              <li class="step-item"><div class="step-bullet">3</div><div class="step-content"><div class="step-title">ใช้งานกับ Microsoft 365 Apps</div><div class="step-desc">Copilot ใน Word, Excel, PowerPoint มีประสิทธิภาพดีกว่า — เชื่อมกับเอกสารได้โดยตรง</div></div></li>
+            </ul>
+            <button class="platform-copy-btn" onclick="copyForPlatform('mini')">📋 คัดลอก Mini Prompt</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: COMPARE ── -->
+      <div class="tab-panel" id="tab-compare">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;line-height:1.7;">เปรียบเทียบความสามารถในการตั้งค่า Personalized AI ของแต่ละ Platform</p>
+        <table class="compare-table">
+          <thead>
+            <tr><th>ฟีเจอร์</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th><th>Copilot</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Full System Prompt</strong></td><td class="check">✓ (GPT Builder)</td><td class="check">✓ (Projects)</td><td class="check">✓ (Gems)</td><td class="partial">△ (Studio)</td></tr>
+            <tr><td><strong>ใช้งานได้ฟรี</strong></td><td class="partial">△ Custom Instr.</td><td class="partial">△ Preferences</td><td class="cross">✗ (ต้อง Adv.)</td><td class="partial">△ Mini prompt</td></tr>
+            <tr><td><strong>Knowledge Base Upload</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ Drive</td><td class="check">✓ SharePoint</td></tr>
+            <tr><td><strong>Memory ข้าม Session</strong></td><td class="check">✓</td><td class="check">✓</td><td class="partial">△</td><td class="partial">△</td></tr>
+            <tr><td><strong>ขนาด Prompt สูงสุด</strong></td><td>32K tokens</td><td>~6K tokens</td><td>สูงมาก</td><td>ขึ้นกับ plan</td></tr>
+            <tr><td><strong>แชร์ให้ทีม</strong></td><td class="check">✓</td><td class="check">✓ (Team)</td><td class="partial">△</td><td class="check">✓</td></tr>
+            <tr><td><strong>เชื่อมกับ Workspace</strong></td><td class="partial">△ Plugin</td><td class="partial">△ MCP</td><td class="check">✓ Google</td><td class="check">✓ Microsoft</td></tr>
+            <tr><td><strong>API Access</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ Azure</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box" style="margin-top:1.2rem;"><strong>🏆 คำแนะนำตามประเภทผู้ใช้:</strong><br>
+        • <strong>ใช้หลายด้าน / Analyst:</strong> Claude Projects + ChatGPT Custom GPT<br>
+        • <strong>ผู้ใช้ Google Workspace:</strong> Gemini Gems + AI Studio<br>
+        • <strong>ผู้ใช้ Microsoft 365:</strong> Copilot Studio + Teams<br>
+        • <strong>Developer / Agentic:</strong> Claude API (CLAUDE.md) + OpenAI API<br>
+        • <strong>ผู้ใช้ฟรี:</strong> ChatGPT Custom Instructions + Claude Preferences</div>
+      </div>
+
+    </div><!-- end modal-body -->
   </div>
 </div>
 
 <script>
-// ── STATE ──
-let currentStep = 1;
-const totalSteps = 7;
-let generatedPrompt = '';
-let systemPromptForTest = '';
+let currentStep=1,totalSteps=7,generatedPrompt='',systemPromptForTest='',miniPrompt='';
 
-// ── STEP NAVIGATION ──
-function goToStep(n) {
-  if (n < 1 || n > totalSteps) return;
-  document.getElementById('sec' + currentStep).classList.remove('active');
-  currentStep = n;
-  document.getElementById('sec' + currentStep).classList.add('active');
+function goToStep(n){
+  if(n<1||n>totalSteps)return;
+  document.getElementById('sec'+currentStep).classList.remove('active');
+  currentStep=n;
+  document.getElementById('sec'+currentStep).classList.add('active');
   updateProgressUI();
-  if (currentStep === 7) buildSummary();
+  if(currentStep===7)buildSummary();
   window.scrollTo({top:0,behavior:'smooth'});
 }
-function nextStep() { goToStep(currentStep + 1); }
-function prevStep() { goToStep(currentStep - 1); }
+function nextStep(){goToStep(currentStep+1);}
+function prevStep(){goToStep(currentStep-1);}
 
-function updateProgressUI() {
-  const nodes = document.querySelectorAll('.step-node');
-  nodes.forEach((node, i) => {
-    node.classList.remove('active','done');
-    if (i + 1 === currentStep) node.classList.add('active');
-    else if (i + 1 < currentStep) node.classList.add('done');
+function updateProgressUI(){
+  document.querySelectorAll('.step-node').forEach((n,i)=>{
+    n.classList.remove('active','done');
+    if(i+1===currentStep)n.classList.add('active');
+    else if(i+1<currentStep)n.classList.add('done');
   });
-  const pct = Math.round(((currentStep - 1) / (totalSteps - 1)) * 100);
-  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressPct').textContent=Math.round(((currentStep-1)/(totalSteps-1))*100)+'%';
 }
 
-// ── CHIP TOGGLE ──
-function toggleChip(el, groupId) {
-  el.classList.toggle('selected');
-  updatePreview();
+function toggleChip(el){el.classList.toggle('selected');updatePreview();}
+
+function getChips(id){
+  const g=document.getElementById(id);
+  return g?[...g.querySelectorAll('.chip.selected')].map(c=>c.textContent.trim()):[];
 }
 
-function getSelectedChips(groupId) {
-  const group = document.getElementById(groupId);
-  if (!group) return [];
-  return Array.from(group.querySelectorAll('.chip.selected')).map(c => c.textContent.trim());
-}
-
-// ── SLIDERS ──
-function updateSlider(input) {
-  const pct = ((input.value - input.min) / (input.max - input.min)) * 100;
-  input.style.setProperty('--pct', pct + '%');
+function updateSlider(input){
+  const pct=((input.value-input.min)/(input.max-input.min))*100;
+  input.style.setProperty('--pct',pct+'%');
 }
 document.querySelectorAll('input[type=range]').forEach(updateSlider);
 
-// ── ROLES BY SECTOR ──
-const roleMap = {
-  business: ['CEO / MD','COO','Business Developer','Strategy Consultant','Project Manager','Operations Manager','HR Manager','Admin'],
-  medical: ['แพทย์','พยาบาล','เภสัชกร','นักกายภาพบำบัด','ผู้จัดการคลินิก','นักวิทยาศาสตร์สุขภาพ','ผู้ดูแลผู้ป่วย'],
-  finance: ['Fund Manager','Equity Analyst','Financial Advisor','CFO','Trader','Accountant','VC/PE Investor','Actuary'],
-  education: ['อาจารย์','นักวิจัย','ครู','ผู้บริหารสถาบัน','นักพัฒนาหลักสูตร'],
-  tech: ['Software Engineer','Data Scientist','DevOps','Product Manager','AI/ML Engineer','CTO','IT Support'],
-  creative: ['Creative Director','Graphic Designer','Copywriter','Social Media Manager','Brand Strategist','UX Designer','Photographer'],
-  legal: ['ทนายความ','นักกฎหมาย','ที่ปรึกษากฎหมาย','เจ้าหน้าที่ราชการ','Compliance Officer'],
-  agriculture: ['เกษตรกร','นักวิชาการเกษตร','Agri-Business Manager','Food Scientist','Supply Chain Manager'],
-  realestate: ['นายหน้า','นักพัฒนาโครงการ','ผู้จัดการทรัพย์สิน','นักประเมิน','Construction Manager'],
-  hospitality: ['Hotel Manager','Tourism Planner','Restaurant Owner','Event Coordinator','Travel Consultant'],
-  freelance: ['อิสระหลายด้าน','Consultant','Content Creator','Coach','Researcher']
+const roleMap={
+  business:['CEO / MD','COO','Business Developer','Strategy Consultant','Project Manager','Operations Manager','HR Manager'],
+  medical:['แพทย์','พยาบาล','เภสัชกร','นักกายภาพบำบัด','ผู้จัดการคลินิก'],
+  finance:['Fund Manager','Equity Analyst','Financial Advisor','CFO','Trader','Accountant','VC/PE Investor'],
+  education:['อาจารย์','นักวิจัย','ครู','ผู้บริหารสถาบัน','นักพัฒนาหลักสูตร'],
+  tech:['Software Engineer','Data Scientist','DevOps','Product Manager','AI/ML Engineer','CTO'],
+  creative:['Creative Director','Graphic Designer','Copywriter','Social Media Manager','Brand Strategist'],
+  legal:['ทนายความ','นักกฎหมาย','ที่ปรึกษากฎหมาย','เจ้าหน้าที่ราชการ','Compliance Officer'],
+  agriculture:['เกษตรกร','นักวิชาการเกษตร','Agri-Business Manager','Food Scientist'],
+  realestate:['นายหน้า','นักพัฒนาโครงการ','ผู้จัดการทรัพย์สิน','Construction Manager'],
+  hospitality:['Hotel Manager','Tourism Planner','Restaurant Owner','Event Coordinator'],
+  freelance:['อิสระหลายด้าน','Consultant','Content Creator','Coach','Researcher']
 };
-
-function loadRoles() {
-  const sector = document.getElementById('f_sector').value;
-  const roleSelect = document.getElementById('f_role');
-  roleSelect.innerHTML = '<option value="">-- เลือกตำแหน่ง --</option>';
-  if (roleMap[sector]) {
-    roleMap[sector].forEach(r => {
-      const opt = document.createElement('option');
-      opt.value = r; opt.textContent = r;
-      roleSelect.appendChild(opt);
-    });
-  }
+function loadRoles(){
+  const s=document.getElementById('f_sector').value,r=document.getElementById('f_role');
+  r.innerHTML='<option value="">-- เลือกตำแหน่ง --</option>';
+  (roleMap[s]||[]).forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;r.appendChild(o);});
 }
 
-// ── LIVE PREVIEW ──
-function updatePreview() {
-  const name = document.getElementById('f_name').value || 'คุณ';
-  const lang = getSelectedChips('langGroup');
-  const sector = document.getElementById('f_sector').options[document.getElementById('f_sector').selectedIndex]?.text || '';
-  const role = document.getElementById('f_role').value || '';
-  const sen = getSelectedChips('senGroup');
-  const goals = getSelectedChips('goalGroup');
-  const fmt = getSelectedChips('fmtGroup');
-  const think = getSelectedChips('thinkGroup');
-  const aiexp = document.getElementById('f_aiexp').options[document.getElementById('f_aiexp').selectedIndex]?.text || '';
-  const expertise = document.getElementById('f_expertise').value;
-  const domain = document.getElementById('f_domain').value;
-
-  const pb = document.getElementById('previewBody');
-
-  if (!name && !sector && goals.length === 0) {
-    pb.innerHTML = `<div class="preview-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p>กรอกข้อมูลเพื่อดู<br>AI Profile ของคุณ</p></div>`;
-    return;
+function updatePreview(){
+  const name=document.getElementById('f_name').value||'คุณ';
+  const lang=getChips('langGroup'),sector=document.getElementById('f_sector').options[document.getElementById('f_sector').selectedIndex]?.text||'';
+  const role=document.getElementById('f_role').value,sen=getChips('senGroup'),goals=getChips('goalGroup');
+  const fmt=getChips('fmtGroup'),think=getChips('thinkGroup'),aiexp=document.getElementById('f_aiexp').options[document.getElementById('f_aiexp').selectedIndex]?.text||'';
+  const expertise=document.getElementById('f_expertise').value,domain=document.getElementById('f_domain').value;
+  const pb=document.getElementById('previewBody');
+  if(!document.getElementById('f_name').value&&!sector&&!goals.length){
+    pb.innerHTML=`<div class="preview-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p>กรอกข้อมูลเพื่อดู<br>AI Profile ของคุณ</p></div>`;return;
   }
-
-  let html = '';
-  if (name !== 'คุณ') {
-    html += `<div class="preview-section-label">AI จะรู้จักคุณในชื่อ</div><div class="preview-text"><span class="preview-strong">${name}</span></div>`;
-  }
-  if (lang.length) {
-    html += `<div class="preview-section-label">ภาษา</div><div>${lang.map(l=>`<span class="preview-tag">${l}</span>`).join('')}</div>`;
-  }
-  if (sector || role) {
-    html += `<div class="preview-section-label">บทบาท</div><div class="preview-text"><span class="preview-strong">${[...sen,role,sector].filter(Boolean).join(' · ')}</span></div>`;
-  }
-  if (expertise || domain) {
-    html += `<div class="preview-section-label">ความเชี่ยวชาญ</div><div class="preview-text">${[expertise,domain].filter(Boolean).join(', ')}</div>`;
-  }
-  if (goals.length) {
-    html += `<div class="preview-section-label">เป้าหมายหลัก</div><div>${goals.slice(0,4).map(g=>`<span class="preview-tag">${g}</span>`).join('')}${goals.length>4?`<span class="preview-tag">+${goals.length-4}</span>`:''}</div>`;
-  }
-  if (think.length) {
-    html += `<div class="preview-section-label">กรอบความคิด</div><div>${think.map(t=>`<span class="preview-tag">${t}</span>`).join('')}</div>`;
-  }
-  if (fmt.length) {
-    html += `<div class="preview-section-label">รูปแบบคำตอบ</div><div>${fmt.map(f=>`<span class="preview-tag">${f}</span>`).join('')}</div>`;
-  }
-  if (aiexp) {
-    html += `<div class="preview-section-label">ระดับ AI</div><div class="preview-text" style="font-size:11px;">${aiexp}</div>`;
-  }
-
-  pb.innerHTML = html || `<div class="preview-placeholder"><p style="font-style:italic;">กำลังสร้าง Profile...</p></div>`;
+  let h='';
+  if(name!=='คุณ')h+=`<div class="preview-section-label">ชื่อ</div><div class="preview-text"><span class="preview-strong">${name}</span></div>`;
+  if(lang.length)h+=`<div class="preview-section-label">ภาษา</div><div>${lang.map(l=>`<span class="preview-tag">${l}</span>`).join('')}</div>`;
+  if(sector||role)h+=`<div class="preview-section-label">บทบาท</div><div class="preview-text"><span class="preview-strong">${[...sen,role,sector].filter(Boolean).join(' · ')}</span></div>`;
+  if(expertise||domain)h+=`<div class="preview-section-label">ความเชี่ยวชาญ</div><div class="preview-text">${[expertise,domain].filter(Boolean).join(', ')}</div>`;
+  if(goals.length)h+=`<div class="preview-section-label">เป้าหมายหลัก</div><div>${goals.slice(0,4).map(g=>`<span class="preview-tag">${g}</span>`).join('')}${goals.length>4?`<span class="preview-tag">+${goals.length-4}</span>`:''}</div>`;
+  if(think.length)h+=`<div class="preview-section-label">กรอบความคิด</div><div>${think.map(t=>`<span class="preview-tag">${t}</span>`).join('')}</div>`;
+  if(fmt.length)h+=`<div class="preview-section-label">รูปแบบคำตอบ</div><div>${fmt.map(f=>`<span class="preview-tag">${f}</span>`).join('')}</div>`;
+  pb.innerHTML=h||`<div class="preview-placeholder"><p style="font-style:italic;">กำลังสร้าง Profile...</p></div>`;
 }
 
-// ── DRAG-TO-SORT PRIORITY ──
-let dragSrc = null;
-document.querySelectorAll('.priority-item').forEach(item => {
-  item.addEventListener('dragstart', e => { dragSrc = item; item.style.opacity = '.5'; });
-  item.addEventListener('dragend', () => { item.style.opacity = '1'; updateRanks(); });
-  item.addEventListener('dragover', e => { e.preventDefault(); item.classList.add('drag-over'); });
-  item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
-  item.addEventListener('drop', e => {
-    e.preventDefault();
-    item.classList.remove('drag-over');
-    if (dragSrc !== item) {
-      const list = item.parentNode;
-      const items = [...list.children];
-      const srcIdx = items.indexOf(dragSrc);
-      const dstIdx = items.indexOf(item);
-      if (srcIdx < dstIdx) list.insertBefore(dragSrc, item.nextSibling);
-      else list.insertBefore(dragSrc, item);
+// DRAG SORT
+let dragSrc=null;
+document.querySelectorAll('.priority-item').forEach(item=>{
+  item.addEventListener('dragstart',()=>{dragSrc=item;item.style.opacity='.5';});
+  item.addEventListener('dragend',()=>{item.style.opacity='1';updateRanks();});
+  item.addEventListener('dragover',e=>{e.preventDefault();item.classList.add('drag-over');});
+  item.addEventListener('dragleave',()=>item.classList.remove('drag-over'));
+  item.addEventListener('drop',e=>{
+    e.preventDefault();item.classList.remove('drag-over');
+    if(dragSrc!==item){
+      const list=item.parentNode,items=[...list.children];
+      const si=items.indexOf(dragSrc),di=items.indexOf(item);
+      si<di?list.insertBefore(dragSrc,item.nextSibling):list.insertBefore(dragSrc,item);
       updateRanks();
     }
   });
 });
-function updateRanks() {
-  document.querySelectorAll('.priority-item').forEach((item, i) => {
-    item.querySelector('.priority-rank').textContent = i + 1;
-  });
-}
+function updateRanks(){document.querySelectorAll('.priority-item').forEach((it,i)=>it.querySelector('.priority-rank').textContent=i+1);}
 
-// ── BUILD SUMMARY ──
-function buildSummary() {
-  const data = collectData();
-  const box = document.getElementById('summaryBox');
-  box.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
-      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ชื่อ</span><br><strong>${data.name||'—'}</strong></div>
-      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ภาษา</span><br><strong>${data.lang.join(', ')||'—'}</strong></div>
-      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">สาขา / ตำแหน่ง</span><br><strong>${[data.sector,data.role].filter(Boolean).join(' / ')||'—'}</strong></div>
-      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ระดับ AI</span><br><strong>${data.aiexp||'—'}</strong></div>
-    </div>
-    <hr style="border:none;border-top:1px solid var(--border);margin:.9rem 0;">
-    <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">เป้าหมายหลัก</span><br>${data.goals.join(', ')||'—'}</div>
-    <div style="margin-top:.6rem;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">กรอบความคิด</span><br>${data.thinking.join(', ')||'—'}</div>
-    <div style="margin-top:.6rem;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ลำดับความสำคัญ</span><br>${getPriorityOrder()}</div>
-  `;
-}
+function getPriorityOrder(){return[...document.querySelectorAll('.priority-item')].map((it,i)=>`${i+1}.${it.querySelector('span:last-child').textContent.replace(/^[^\w]+/,'').trim()}`).join(', ');}
 
-function collectData() {
-  return {
-    name: document.getElementById('f_name').value,
-    lang: getSelectedChips('langGroup'),
-    aiexp: document.getElementById('f_aiexp').value,
-    time: getSelectedChips('timeGroup'),
-    sector: document.getElementById('f_sector').options[document.getElementById('f_sector').selectedIndex]?.text?.replace(/^[^\w]+/,'') || '',
-    role: document.getElementById('f_role').value,
-    seniority: getSelectedChips('senGroup'),
-    orgsize: document.getElementById('f_orgsize').value,
-    expertise: document.getElementById('f_expertise').value,
-    goals: getSelectedChips('goalGroup'),
-    freq: getSelectedChips('freqGroup'),
-    challenge: document.getElementById('f_challenge').value,
-    length: document.getElementById('sl_length').value,
-    formal: document.getElementById('sl_formal').value,
-    proactive: document.getElementById('sl_proactive').value,
-    format: getSelectedChips('fmtGroup'),
-    thinking: getSelectedChips('thinkGroup'),
-    skills_data: getSelectedChips('skill1Group'),
-    skills_write: getSelectedChips('skill2Group'),
-    skills_tech: getSelectedChips('skill3Group'),
-    domain: document.getElementById('f_domain').value,
-    avoid: document.getElementById('f_avoid').value,
-    priorities: getPriorityOrder(),
-    context: document.getElementById('f_context').value,
+function collectData(){
+  return{
+    name:document.getElementById('f_name').value,
+    lang:getChips('langGroup'),aiexp:document.getElementById('f_aiexp').value,
+    sector:document.getElementById('f_sector').options[document.getElementById('f_sector').selectedIndex]?.text?.replace(/^[^\w]+/,'')||'',
+    role:document.getElementById('f_role').value,seniority:getChips('senGroup'),
+    orgsize:document.getElementById('f_orgsize').value,expertise:document.getElementById('f_expertise').value,
+    goals:getChips('goalGroup'),freq:getChips('freqGroup'),challenge:document.getElementById('f_challenge').value,
+    length:document.getElementById('sl_length').value,formal:document.getElementById('sl_formal').value,
+    proactive:document.getElementById('sl_proactive').value,format:getChips('fmtGroup'),thinking:getChips('thinkGroup'),
+    skills:[...getChips('skill1Group'),...getChips('skill2Group'),...getChips('skill3Group')],
+    domain:document.getElementById('f_domain').value,avoid:document.getElementById('f_avoid').value,
+    priorities:getPriorityOrder(),context:document.getElementById('f_context').value,
   };
 }
 
-function getPriorityOrder() {
-  return Array.from(document.querySelectorAll('.priority-item')).map((item,i) => `${i+1}.${item.querySelector('span:last-child').textContent.replace(/^[^\w]+/,'').trim()}`).join(', ');
+function buildSummary(){
+  const d=collectData();
+  document.getElementById('summaryBox').innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ชื่อ</span><br><strong>${d.name||'—'}</strong></div>
+      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ภาษา</span><br><strong>${d.lang.join(', ')||'—'}</strong></div>
+      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">สาขา / ตำแหน่ง</span><br><strong>${[d.sector,d.role].filter(Boolean).join(' / ')||'—'}</strong></div>
+      <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ระดับ AI</span><br><strong>${d.aiexp||'—'}</strong></div>
+    </div>
+    <hr style="border:none;border-top:1px solid var(--border);margin:.9rem 0;">
+    <div><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">เป้าหมายหลัก</span><br>${d.goals.join(', ')||'—'}</div>
+    <div style="margin-top:.6rem;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">กรอบความคิด</span><br>${d.thinking.join(', ')||'—'}</div>
+    <div style="margin-top:.6rem;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">ลำดับความสำคัญ</span><br>${getPriorityOrder()}</div>`;
 }
 
-// ── GENERATE PROMPT ──
-function generatePrompt() {
-  const d = collectData();
-  const langStr = d.lang.length ? d.lang.join(', ') : 'ภาษาไทย';
-  const lengthDesc = d.length <= 3 ? 'กระชับและตรงประเด็น' : d.length >= 8 ? 'ละเอียดและครอบคลุม' : 'สมดุลระหว่างความกระชับและความลึก';
-  const formalDesc = d.formal <= 3 ? 'ลำลองและเป็นมิตร' : d.formal >= 8 ? 'เป็นทางการสูง' : 'กึ่งทางการ';
-  const proactiveDesc = d.proactive >= 7 ? 'เสนอแนะเพิ่มเติม วิเคราะห์เชิงรุก และนำเสนอมุมมองที่ยังไม่ได้ถามถึง' : 'ตอบตรงๆ ตามที่ถาม';
+function generatePrompt(){
+  const d=collectData();
+  const langStr=d.lang.length?d.lang.join(', '):'ภาษาไทย';
+  const lenDesc=d.length<=3?'กระชับและตรงประเด็น':d.length>=8?'ละเอียดและครอบคลุม':'สมดุลระหว่างความกระชับและความลึก';
+  const fmlDesc=d.formal<=3?'ลำลองและเป็นมิตร':d.formal>=8?'เป็นทางการสูง':'กึ่งทางการ';
+  const proDesc=d.proactive>=7?'เสนอแนะเพิ่มเติม วิเคราะห์เชิงรุก และนำเสนอมุมมองที่ยังไม่ได้ถามถึง':'ตอบตรงๆ ตามที่ถาม';
 
-  const allSkills = [...d.skills_data,...d.skills_write,...d.skills_tech].filter(Boolean);
-
-  let prompt = `# AI SYSTEM PROMPT — ${d.name || 'ผู้ใช้'}
-# สร้างโดย AI Assistant Configurator
-# ─────────────────────────────────────
+  generatedPrompt=`# AI SYSTEM PROMPT — ${d.name||'ผู้ใช้'}
+# Generated by AI Assistant Configurator
+# ─────────────────────────────────────────
 
 ## IDENTITY
-You are a highly capable personal AI assistant configured specifically for ${d.name || 'ผู้ใช้'}.
+You are a highly capable personal AI assistant configured specifically for ${d.name||'ผู้ใช้'}.
 
 **Primary Language:** Respond primarily in ${langStr}. Match the language of each message automatically.
 
@@ -1006,42 +782,42 @@ You are a highly capable personal AI assistant configured specifically for ${d.n
 
 ## USER PROFILE
 
-**Name / Preferred Address:** ${d.name || 'ไม่ระบุ'}
-**Field / Sector:** ${d.sector || 'ไม่ระบุ'}
-**Role / Position:** ${[...d.seniority, d.role].filter(Boolean).join(', ') || 'ไม่ระบุ'}
-**Organization Scale:** ${d.orgsize || 'ไม่ระบุ'}
-**Expertise & Background:** ${[d.expertise, d.domain].filter(Boolean).join('; ') || 'ทั่วไป'}
-**AI Experience Level:** ${d.aiexp || 'ไม่ระบุ'}
+**Name / Preferred Address:** ${d.name||'ไม่ระบุ'}
+**Field / Sector:** ${d.sector||'ไม่ระบุ'}
+**Role / Position:** ${[...d.seniority,d.role].filter(Boolean).join(', ')||'ไม่ระบุ'}
+**Organization Scale:** ${d.orgsize||'ไม่ระบุ'}
+**Expertise & Background:** ${[d.expertise,d.domain].filter(Boolean).join('; ')||'ทั่วไป'}
+**AI Experience Level:** ${d.aiexp||'ไม่ระบุ'}
 
 ---
 
 ## PRIMARY OBJECTIVES
 
 The user wants AI assistance for the following key activities:
-${d.goals.map(g => `- ${g}`).join('\n') || '- ทั่วไป'}
+${d.goals.map(g=>`- ${g}`).join('\n')||'- ทั่วไป'}
 
-**Usage Frequency:** ${d.freq.join(', ') || 'ไม่ระบุ'}
+**Usage Frequency:** ${d.freq.join(', ')||'ไม่ระบุ'}
 
 **Core Challenge to Solve:**
-${d.challenge || 'ไม่ระบุ'}
+${d.challenge||'ไม่ระบุ'}
 
 ---
 
 ## RESPONSE STYLE DIRECTIVES
 
-**Response Length:** ${lengthDesc} (Setting: ${d.length}/10)
-**Formality Level:** ${formalDesc} (Setting: ${d.formal}/10)
-**Proactivity:** ${proactiveDesc} (Setting: ${d.proactive}/10)
+**Response Length:** ${lenDesc} (Setting: ${d.length}/10)
+**Formality Level:** ${fmlDesc} (Setting: ${d.formal}/10)
+**Proactivity:** ${proDesc} (Setting: ${d.proactive}/10)
 
 **Preferred Output Format(s):**
-${d.format.map(f => `- ${f}`).join('\n') || '- ยืดหยุ่นตามบริบท'}
+${d.format.map(f=>`- ${f}`).join('\n')||'- ยืดหยุ่นตามบริบท'}
 
 ---
 
 ## COGNITIVE FRAMEWORKS
 
 Apply the following thinking approaches when analyzing problems:
-${d.thinking.map(t => `- **${t}**`).join('\n') || '- Balanced reasoning'}
+${d.thinking.map(t=>`- **${t}**`).join('\n')||'- Balanced reasoning'}
 
 **Priority Hierarchy (Most → Least Important):**
 ${d.priorities}
@@ -1050,125 +826,122 @@ ${d.priorities}
 
 ## CAPABILITY FOCUS AREAS
 
-${allSkills.length ? `The user requires deep competency in:\n${allSkills.map(s => `- ${s}`).join('\n')}` : 'General-purpose assistance'}
+${d.skills.length?`The user requires deep competency in:\n${d.skills.map(s=>`- ${s}`).join('\n')}`:'General-purpose assistance'}
 
 ---
 
 ## CONSTRAINTS & GUARDRAILS
 
-${d.avoid ? `**Avoid the following at all times:**\n${d.avoid}` : '**Standard ethical guidelines apply.**'}
+${d.avoid?`**Avoid the following at all times:**\n${d.avoid}`:'**Standard ethical guidelines apply.**'}
 
 ---
 
 ## ADDITIONAL CONTEXT
 
-${d.context || 'ไม่มีข้อมูลเพิ่มเติม'}
+${d.context||'ไม่มีข้อมูลเพิ่มเติม'}
 
 ---
 
 ## OPERATIONAL INSTRUCTIONS
 
-1. Always address the user as "${d.name || 'คุณ'}" when appropriate.
+1. Always address the user as "${d.name||'คุณ'}" when appropriate.
 2. Adapt your expertise level to the user's domain — assume high analytical literacy.
 3. When uncertain, ask ONE clarifying question rather than proceeding with assumptions.
 4. Flag when your response is reaching the limit of your reliable knowledge.
 5. For complex decisions, structure responses with: Summary → Analysis → Recommendation → Next Steps.
-6. Proactivity level ${d.proactive}/10: ${proactiveDesc}.
+6. Proactivity level ${d.proactive}/10: ${proDesc}.
 
 ---
-*Configured via AI Assistant Configurator | Version 1.0*`;
+*Generated by AI Assistant Configurator v1.1*`;
 
-  generatedPrompt = prompt;
-  systemPromptForTest = prompt;
-  document.getElementById('outputBox').textContent = prompt;
+  miniPrompt=`You are my personal AI advisor. I'm ${d.name||'[Name]'}, ${[...d.seniority,d.role,d.sector].filter(Boolean).join(', ')||'a professional'}. Respond in ${langStr}. Be ${fmlDesc}. ${d.thinking.length?'Use '+d.thinking[0]+' thinking.':''} ${d.goals.length?'Focus on: '+d.goals.slice(0,2).join(', '):''} Always give Executive Summary first.`;
+
+  systemPromptForTest=generatedPrompt;
+  document.getElementById('outputBox').textContent=generatedPrompt;
   document.getElementById('modalOverlay').classList.add('open');
-
-  // Show live test
-  document.getElementById('testContainer').style.display = 'block';
-  document.getElementById('chatArea').innerHTML = `<div class="chat-msg ai">สวัสดี ${d.name||'คุณ'} 👋 ผมได้รับการตั้งค่าเรียบร้อยแล้ว พร้อมช่วยงานด้าน ${d.sector||'ทุกด้าน'} ลองถามคำถามได้เลยครับ</div>`;
+  document.getElementById('testContainer').style.display='block';
+  const chatArea=document.getElementById('chatArea');
+  chatArea.innerHTML=`<div class="chat-msg ai">สวัสดี ${d.name||'คุณ'} 👋 System Prompt ถูกตั้งค่าเรียบร้อยแล้ว พร้อมช่วยงานด้าน ${d.sector||'ทุกด้าน'} ลองถามคำถามได้เลยครับ</div>`;
 }
 
-// ── MODAL ──
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-}
-document.getElementById('modalOverlay').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+// MODAL
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-// ── COPY ──
-function copyPrompt() {
-  navigator.clipboard.writeText(generatedPrompt).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.classList.add('success');
-    btn.innerHTML = '✓ คัดลอกแล้ว!';
-    showToast('คัดลอก System Prompt แล้ว');
-    setTimeout(() => {
-      btn.classList.remove('success');
-      btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> คัดลอก Prompt';
-    }, 2000);
+// TABS
+function switchTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('tabt-'+id.replace('tab-','')).classList.add('active');
+}
+
+// ACCORDION
+function toggleCard(id){
+  const card=document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+// COPY FUNCTIONS
+function copyForPlatform(type){
+  let text='';
+  if(type==='full')text=generatedPrompt;
+  else if(type==='mini')text=miniPrompt;
+  else if(type==='chatgpt-ci'){
+    // Extract USER PROFILE + CONTEXT sections for Custom Instructions
+    const lines=generatedPrompt.split('\n');
+    const start=lines.findIndex(l=>l.includes('USER PROFILE'));
+    const end=lines.findIndex(l=>l.includes('PRIMARY OBJECTIVES'));
+    const contextStart=lines.findIndex(l=>l.includes('ADDITIONAL CONTEXT'));
+    const contextEnd=lines.findIndex((l,i)=>i>contextStart&&l.startsWith('---'));
+    text='[For "What ChatGPT should know about you"]\n'+lines.slice(start+2,end-1).join('\n').trim()+'\n\n'+lines.slice(contextStart+2,contextEnd).join('\n').trim();
+    const styleStart=lines.findIndex(l=>l.includes('RESPONSE STYLE'));
+    const styleEnd=lines.findIndex(l=>l.includes('COGNITIVE FRAMEWORKS'));
+    text+='\n\n[For "How should ChatGPT respond"]\n'+lines.slice(styleStart+2,styleEnd-1).join('\n').trim();
+  }
+  navigator.clipboard.writeText(text).then(()=>{
+    showToast('คัดลอกแล้ว — พร้อมวางใน Platform ได้เลย');
   });
 }
 
-// ── DOWNLOAD ──
-function downloadPrompt() {
-  const blob = new Blob([generatedPrompt], {type:'text/plain'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'ai-system-prompt.txt';
-  a.click();
+function copyPrompt(){
+  navigator.clipboard.writeText(generatedPrompt).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    btn.classList.add('success');btn.innerHTML='✓ คัดลอกแล้ว!';
+    showToast('คัดลอก System Prompt แล้ว');
+    setTimeout(()=>{btn.classList.remove('success');btn.innerHTML='<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> คัดลอก Prompt';},2000);
+  });
+}
+
+function downloadPrompt(){
+  const blob=new Blob([generatedPrompt],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ai-system-prompt.txt';a.click();
   showToast('บันทึกไฟล์แล้ว');
 }
 
-// ── TOAST ──
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toastText').textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastText').textContent=msg;
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-// ── LIVE AI TEST ──
-async function sendTest() {
-  const input = document.getElementById('testInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  if (!systemPromptForTest) { showToast('กรุณา Generate Prompt ก่อน'); return; }
-
-  const chatArea = document.getElementById('chatArea');
-  const sendBtn = document.getElementById('testSendBtn');
-
-  chatArea.innerHTML += `<div class="chat-msg user">${msg}</div>`;
-  input.value = '';
-  sendBtn.disabled = true;
-
-  const typingDiv = document.createElement('div');
-  typingDiv.className = 'chat-msg ai typing';
-  chatArea.appendChild(typingDiv);
-  chatArea.scrollTop = chatArea.scrollHeight;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system: systemPromptForTest,
-        messages:[{role:'user',content:msg}]
-      })
-    });
-    const data = await res.json();
-    const reply = data.content?.find(c=>c.type==='text')?.text || 'ไม่ได้รับคำตอบ';
-    typingDiv.className = 'chat-msg ai';
-    typingDiv.textContent = reply;
-  } catch(e) {
-    typingDiv.className = 'chat-msg ai';
-    typingDiv.textContent = '⚠️ เกิดข้อผิดพลาด กรุณาลองใหม่';
-  }
-
-  sendBtn.disabled = false;
-  chatArea.scrollTop = chatArea.scrollHeight;
+// LIVE TEST
+async function sendTest(){
+  const input=document.getElementById('testInput'),msg=input.value.trim();
+  if(!msg||!systemPromptForTest)return;
+  const chatArea=document.getElementById('chatArea'),sendBtn=document.getElementById('testSendBtn');
+  chatArea.innerHTML+=`<div class="chat-msg user">${msg}</div>`;
+  input.value='';sendBtn.disabled=true;
+  const typing=document.createElement('div');
+  typing.className='chat-msg ai typing';
+  chatArea.appendChild(typing);chatArea.scrollTop=chatArea.scrollHeight;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:systemPromptForTest,messages:[{role:'user',content:msg}]})});
+    const data=await res.json();
+    const reply=data.content?.find(c=>c.type==='text')?.text||'ไม่ได้รับคำตอบ';
+    typing.className='chat-msg ai';typing.textContent=reply;
+  }catch(e){typing.className='chat-msg ai';typing.textContent='⚠️ เกิดข้อผิดพลาด กรุณาลองใหม่';}
+  sendBtn.disabled=false;chatArea.scrollTop=chatArea.scrollHeight;
 }
 </script>
 </body>
